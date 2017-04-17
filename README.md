@@ -1,4 +1,6 @@
 #Geovation - My Home Energy Planner
+A project developed by [CarbonCoop](http://carbon.coop/) and [Urbed](http://urbed.coop/)
+Give it a go at [geovation.carbon.coop/](http://geovation.carbon.coop/)
 
 ##Summary:
 A way for householders to very quickly obtain accurate, comprehensive and usable information on the energy performance of their homes.
@@ -9,7 +11,7 @@ Housing stock one of least efficient in Europe; 2m homes in fuel poverty with kn
 Though homes are biggest purchase people make they know little about how they work and how they could be improved
 Trusted competent advice is hard to come by
 
-##Solution:
+##Solution
 Opening up a complex tool to the wider public
 Enabling people to self assess, a free, user-friendly entry point into the pro service
 Looking for compromise between ease of use and accuracy: something OS and Land Registry data allows us to do
@@ -30,6 +32,9 @@ Through partnering with CCGs and Local Authority to provide assistance on Fuel P
 ##Development project
 Pilot project in Greater Manchester utilising existing relationships with the 10 local authorities and the city region’s combined authority
 Assist with addressing fuel poverty targets
+
+##Ordnance Survey data
+The tool uses a dataset of Salford City Council. CarbonCoop has signed a License to use it for the pourpose of the tool but cannot disclosure the contents of the dataset. Therefore anybody who want to use the tool with full functionality will require get a similar License.
 
 
 ##Who are the users?
