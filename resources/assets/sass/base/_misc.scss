@@ -1,0 +1,22 @@
+.cf {
+	zoom: 1;
+	clear: both;
+
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+.right-align {
+	float: right;
+}
+
+.ctext {
+	text-align: center;
+}
+
+.grey-bg {
+	background: $grey--x-light;
+}

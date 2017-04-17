@@ -1,0 +1,62 @@
+http://localhost:8000/os-addresses/results/osgb1000028936534?floor-area=54.6047992&external-perimeter=17.76142248277&altitude=54.8&roof-height-base=4.9&roof-height-max=9.0&roof-height-max=9.0&floor-area-user-modified=&build-date=1900-1929&build-storeys=2&loft-conversion-date=&flat-or-apartment-above=&flat-or-apartment-below=false&wall-material=masonryCavityUninsulated&windows-north=10&windows-south=2&windows-east-west=2&window-type=doubleGlazedOlder&loft-insulation=50mm&floor-insulation=50mm&home-draughts=diyDraughtproofing&home-heating=radiatorsWithOlderBoiler&another-heating-source=&home-heating-extra-1=&total-light-fittings=3&low-energy-light-fittings=2&appliance-rated=false&home-solar=false&home-solar-rating=&fuel-type-1=electric_annual_kwh&electricity-usage=100&fuel-type-2=gas_annual_m3&gas-usage=100&preference-carbon=1&preference-cost=2&preference-comfort=3
+
+--------------------------------------------------
+first installation after downlaod (in root folder)
+--------------------------------------------------
+composer install
+npm install gulp
+npm install
+gulp in root folder
+php artisan migrate (this will create the databases, update user and password in config/database.php first)
+
+Run gulp automatically when changes have been made
+--------------------------------------------------
+gulp watch
+
+
+In config/app.php
+-----------------
+Changed 'cipher' => 'AES-256-CBC',
+to 'cipher' => 'AES-128-CBC',
+
+Create database
+---------------
+name-> geovation
+user-> cagabi
+password-> emonalcachofa
+It can be changed in config/database.php
+
+Import database
+---------------
+Find it in Dropbox
+
+Get api key for google maps
+---------------------------
+https://developers.google.com/maps/documentation/javascript/get-api-key
+
+
+
+-----------------------
+Running the application
+-----------------------
+
+Using development server
+	php artisan serve
+
+Permission to avoid running the server (not totally sure that it works)
+	http://stackoverflow.com/questions/30639174/file-permissions-for-laravel-5-and-others
+
+
+
+
+
+
+
+
+
+
+
+-----------
+Laravel log
+-----------
+storage/logs

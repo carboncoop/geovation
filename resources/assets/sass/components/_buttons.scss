@@ -1,0 +1,203 @@
+
+.btn {
+	display: inline-block;
+	padding: 5px;
+	text-align: center;
+	color: $grey;
+	background: $grey--x-light;
+	position: relative;
+	text-decoration: none;
+	font-weight: normal;
+	font: $button--normal;
+}
+
+// <button> style resets to make it behave the same as the <a> links.
+button.btn, input.btn {
+	appearance: none;
+	border: none;
+	font-size: 1em;
+	cursor: pointer;
+	outline: none;
+}
+
+.btn {
+	transition: background 0.3s $fade-easing;
+
+	&:hover {
+		background: $default-btn-hover;
+	}
+}
+
+.btn--highlighted {
+	background: $highlight;
+	color: $white;
+	transition: background 0.3s $fade-easing;
+
+	&:hover {
+		background: $highlight-hover;
+	}
+}
+
+.btn--basic.btn--highlighted,
+.btn--arrow.btn--highlighted {
+	border-bottom: 3px solid darken($highlight, 20%);
+}
+
+
+.btn--basic, .btn--arrow {
+	border-bottom: 3px solid $grey--light;
+	padding: 15px 20px;
+	border-top-right-radius: $border-radius;
+	border-top-left-radius: $border-radius;
+}
+
+// Arrow button styles
+
+.btn--arrow {
+	padding-right: 40px;
+
+	&:after {
+		content: '';
+	    display: block;
+	    position: absolute;
+	    height: 15px;
+	    width: 10px;
+	    background: url("../img/right-arrow.svg");
+	    background-size: 100% 100%;
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	    right: 17px;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+}
+
+// Round button styles
+
+.btn--round {
+	border-radius: 25px;
+	padding: 8px 20px;
+}
+
+// Basic icon button styles
+
+.btn--icon {
+	padding-left: 40px;
+	position: relative;
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		left: 15px;
+		top: 50%;
+		transform: translateY(-50%);
+		height: 15px;
+		width: 15px;
+	    background-size: 100% 100%;
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	}
+}
+
+// Specific icons for buttons
+
+.btn--icon-print:after {
+	background-image: url("../img/print-icon.svg");
+}
+
+// Toggle Button (Checkbox) Styles
+
+.btn--toggle-wrapper {
+	display: table;
+	position: relative;
+}
+
+.btn--toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.btn--toggle + label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  height: 40px;
+  width: 150px;
+}
+
+.btn--toggle + label:after {
+	content: '';
+	position: absolute;
+	right: 0px;
+	height: 100%;
+	width: 50%;
+	top: 0;
+	border-radius: 25px;
+	background: $purple;
+	transition: all 0.3s $snap-easing;
+	z-index: 1;
+}
+
+.toggle-option {
+    position: absolute;
+    display: block;
+    width: 50%;
+	top: 50%;
+	transform: translateY(-50%);
+    text-align: center;
+    z-index: 10;
+    transition: color 0.3s $snap-easing;
+
+	&:nth-child(1) {
+		left: 0px;
+	}
+
+	&:nth-child(2) {
+		right: 0px;
+		color: $white;
+	}
+}
+
+.btn--toggle:checked + label {
+	&:after {
+		right: 50%;
+		background: $green;
+	}
+
+	.toggle-option:nth-child(1) {
+		color: $white;
+	}
+
+	.toggle-option:nth-child(2) {
+		right: 0px;
+		color: inherit;
+	}
+}
+
+.clone-controls__info {
+    font: $meta-data;
+    font-size: 0.9em;
+    color: $grey;
+    margin-top: 0.4em;
+    float: left;
+}
+
+.btn-clone-nav {
+	display: inline-block;
+	float: right;
+	@include circle-sizing(28px);
+	background-color: $grey--light;
+	background-image: url("../img/negative-icon.svg");
+    background-size: 55%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+}
+
+.btn-clone {
+	background-color: $highlight;
+	background-image: url("../img/plus-icon.svg");
+}

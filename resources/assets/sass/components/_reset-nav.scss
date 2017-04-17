@@ -1,0 +1,39 @@
+.reset-nav {
+	display: inline-block;
+	padding: 10px 5px;
+}
+
+.reset-nav__back,
+.reset-nav__reset {
+	text-decoration: none;
+	display: inline-block;
+}
+
+.reset-nav__back {
+	color: $grey;
+	padding-right: 15px;
+	padding-left: 45px;
+	border-right: 1px solid $grey--light;
+	position: relative;
+
+	&:before {
+		content: '';
+		@include circle-sizing($circle-size);
+
+		background-color: $grey--x-light;
+    	background-image: url("../img/reset-icon.svg");
+    	background-size: 55%;
+    	background-position: 49% 50%;
+    	background-repeat: no-repeat;
+
+		display: block;
+		position: absolute;
+		left: 5px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+.reset-nav__reset {
+	padding-left: 15px;
+}

@@ -1,0 +1,74 @@
+.house-illustration {
+	position: relative;
+	margin-top: 3em;
+
+	& > img {
+		width: 100%;
+		display: block;
+	}
+}
+
+.house-illustration__icon {
+	position: absolute;
+	height: 13%;
+    width: 13%;
+	background: $salmon;
+    border-radius: 100%;
+    transition: background 0.3s $fade-easing;
+
+	img {
+		margin: 0 auto;
+		max-height: 100%;
+		max-width: 100%;
+		height: auto;
+	    width: auto;
+		display: block;
+		padding: 17%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform:translate(-50%,-50%);
+	}
+
+	.white-hover {
+		transition: opacity 0.3s $fade-easing;
+		opacity: 0;
+	}
+
+	&:hover {
+		background: $highlight;
+
+		img {
+			opacity: 0;
+		}
+
+		.white-hover {
+			opacity: 1;
+		}
+	}
+
+}
+
+.house-illustration__icon--insulation {
+	@extend .house-illustration__icon;
+	top: 24%;
+    left: 90%;
+}
+
+.house-illustration__icon--services {
+	@extend .house-illustration__icon;
+	top: 49%;
+    left: 12%;
+}
+
+.house-illustration__icon--energy {
+	@extend .house-illustration__icon;
+	top: 69%;
+    left: 91%;
+}
+
+.house-illustration__icon--data {
+	@extend .house-illustration__icon;
+	top: 3%;
+    left: 17%;
+}

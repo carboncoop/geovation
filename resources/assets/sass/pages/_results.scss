@@ -1,0 +1,157 @@
+.results-graphs h3 {
+	color: $purple;
+	margin-bottom: 0.45em;
+}
+
+.results-graphs__graph {
+	max-width: 100%;
+	margin-bottom: 4em;
+	margin-left:-10px;
+}
+
+.results-graphs__graph svg {
+	width:100%;
+	height:auto;
+	margin:0 0 20px;
+}
+
+.value-bar {
+	// fill:#f1654f;
+	stroke-width:0;
+}
+
+.background-bar {
+	fill:#fcf2f0;
+	stroke-width:0;
+}
+
+.target-range {
+	// fill:rgba(106, 41, 74, 0.4);
+	// fill:url("/#stripes");
+	stroke-width:0;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis path {
+	stroke:none;
+}
+
+.axis text,
+.graph-average-text-box {
+    font-family: sans-serif;
+    font-size: 11px;
+    fill:$purple--light;
+}
+
+.graph-average-text-box {
+	font-size: 10px;
+}
+
+.tick line {
+	stroke:$grey--light;
+}
+
+.chart-legend {
+	margin:10px;
+	padding:10px;
+	background:$grey--x-light;
+	overflow:hidden;
+}
+
+.chart-legend-item {
+	width:180px;
+	margin-right:40px;
+	display: inline-block;
+	vertical-align: top;
+	font-size:0.9em;
+}
+
+.chart-legend-item p {
+	// float:left;
+}
+
+.chart-legend-item-color {
+	float:left;
+	width:10px;
+	height:10px;
+	margin-right: 10px;
+    margin-top: 8px;
+	margin-bottom: 1em;
+}
+
+.house-illustration-info {
+	display: none;
+	opacity: 0;
+	background: $salmon;
+	border-radius: 4px;
+	padding: 20px;
+	margin: 1em 0;
+	transition: opacity 0.15s ease-out;
+}
+
+.house-illustration-info.animating {
+	opacity: 0;
+	display: block;
+}
+
+.hosue-illustration-info.visible.animating {
+    display: block;
+}
+
+.house-illustration-info.visible {
+	display: block;
+	opacity: 1;
+}
+
+.home-instructions {
+	margin-bottom: 2em;
+
+	b, .highlight {
+		color: $purple--light;
+	}
+}
+
+.graph-info {
+	overflow:hidden;
+	opacity:0;
+	height:0;
+	transform: translateY(-10px);
+	transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.graph-info--revealed {
+	opacity:1;
+	transform: translateY(0px);
+	height:auto;
+}
+
+.graph-info-toggle {
+	cursor: pointer;
+}
+
+.graph-info-toggle span { 
+	display: block;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 50%;
+    border: solid 1px $grey;
+    transition: all 0.5s;
+    font-size:9px;
+    float: left;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.graph-info-toggle--active span {
+	background:$purple;
+	border-color:$purple;
+	color:$white;
+}

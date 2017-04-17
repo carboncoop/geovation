@@ -1,0 +1,45 @@
+// General Colors
+
+$white: rgb(255,255,255);
+$grey--xx-light: rgb(247,247,247);
+$grey--x-light: rgb(238,238,238);
+$grey--light: rgb(200,200,200);
+$grey: rgb(149,149,149);
+$grey--dark: rgb(111, 111, 111);
+$black: rgb(0,0,0);
+$off-black: rgb(31,31,31);
+$green: rgb(58,178,94);
+
+// Site Colors
+
+$highlight: rgb(241,101,79);
+$highlight-hover: mix($black, $highlight,5%);
+$default-btn-hover: mix($black, $grey--x-light,5%);
+$purple: rgb(77,46,72);
+$purple--light: rgb(106,41,74);
+$salmon: rgb(252,242,240);
+
+//Typography
+$typeface--heading: 'Sailec', sans-serif;
+$typeface--body: 'Sailec', sans-serif;
+
+// $heading--xx-large: 80px/80px $typeface--heading;
+// $heading--x-large: 70px/70px $typeface--heading;
+$heading--x-large: 2.188rem/1.1 $typeface--heading;
+$heading--large: 1.750rem/1.1 $typeface--heading;
+$heading--normal: 1.250em/1.2 $typeface--heading;
+$heading--small: 1.5rem/1.2 $typeface--heading;
+$heading--x-small: 1rem/1.2 $typeface--heading;
+
+$body--normal: 1rem/1.4 $typeface--body;
+
+$button--normal: 1rem/1.4 $typeface--body;
+$meta-data: 300 0.875rem/1.4 $typeface--body;
+
+// Form Config
+$border-radius: 4px;
+
+
+// Animation Easing
+$snap-easing: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+$fade-easing: cubic-bezier(0.165, 0.840, 0.440, 1.000);

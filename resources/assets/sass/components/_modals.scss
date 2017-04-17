@@ -1,0 +1,34 @@
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    background: rgb(226, 226, 226);
+    background: rgba(226, 226, 226, 0.98);
+    box-shadow: 3px 3px 13px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    width: 90%;
+    max-width: 900px;
+    padding: 20px;
+    z-index: 30;
+    display: none;
+    transition: opacity 0.2s ease-out;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.modal__title {
+	color: $highlight;
+	margin-bottom: 0.75em;
+}
+
+.modal.animating {
+    opacity: 0;
+    display: block;
+}
+
+
+.modal--visible {
+	opacity: 1;
+	display: block;
+}

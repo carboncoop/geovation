@@ -1,0 +1,330 @@
+// TODO: Refactor some styles, fair few things can be shared a bit more
+// TODO: Hover state for dropdown.
+
+
+// Fix sizing on Firefox.
+
+*::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+$circle-size: 28px;
+
+// Field and title styles
+
+.input-field {
+	font: $button--normal;
+
+	&__field-title {
+		color: $purple;
+		margin-bottom: 1.25em;
+		display: block;
+		transition: color 0.3s $fade-easing;
+	}
+}
+
+.input-field__info {
+    font: $meta-data;
+    color: $grey;
+    margin-top: 1em;
+}
+
+.input-field__error {
+    font: $meta-data;
+    color: $highlight;
+    margin-top: 0;
+}
+
+.input-field.prefilled input {
+	color: $grey--light !important;
+}
+
+.input-field.complete {
+	.input-order-num {
+		background-color: $highlight;
+	    background-image: url("../img/tick-icon.svg");
+		background-size: 55%;
+		background-position: center;
+		background-repeat: no-repeat;
+		border-color: $highlight;
+		color: transparent; //Temp, instead do font-size: 0;
+	}
+
+	&:not(.input-field--hidden) .input-field--field-title {
+		color: $grey--light;
+	}
+}
+
+.input-order-num {
+	@include circle-sizing($circle-size);
+	border: 2px solid $purple;
+	padding: 2px 0;
+	margin-right: 10px;
+	font-weight: bold;
+	text-align: center;
+	transition: color 0.3s $fade-easing, background-color 0.3s $fade-easing, border-color 0.3s $fade-easing;
+	display: none;
+}
+
+// Hidden Fields
+
+.input-field--hidden {
+	background: rgb(248,248,248);
+	padding: 30px;
+}
+
+/*
+	We can swap these out with a more interesting animation,
+	currently just doing a really basic fade in. if the timing
+	is changed here, it also needs to be updated in the form.js
+	click handler
+*/
+
+[data-toggle-hidden-target] {
+	transition: visibility 300ms ease-out, opacity 300ms ease-out;
+}
+
+.hidden {
+	display: none;
+}
+
+[data-toggle-hidden-target].animating {
+	opacity: 0;
+	visibility: hidden;
+}
+
+
+// Style resets and basic styling
+
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+	display: table;
+	appearance: none;
+	border: none;
+	outline: none;
+	padding: 0;
+	font: inherit;
+	padding: 15px 20px;
+	background: rgb(238, 238, 238);
+}
+
+
+// Rounded top
+
+.input--rounded-top {
+	border-top-right-radius: $border-radius;
+	border-top-left-radius: $border-radius;
+}
+
+// Border bottom
+
+input.input--border-bot {
+	border-bottom: 3px solid $grey--light;
+	transition: border-bottom 0.3s $fade-easing;
+
+	&:focus,
+	&:hover {
+		border-bottom: 3px solid $purple;
+	}
+}
+
+// Basic text input
+
+.input-basic-text {
+	width: 100%;
+}
+
+// Number inputs
+
+.input-number-wrapper {
+	display: inline-block;
+	margin-right: 15px;
+    margin-bottom: 10px;
+
+	input {
+		float: left;
+	}
+
+	input + label {
+		float: left;
+		color: $grey;
+		margin-top: 20px;
+		margin-left: 15px;
+	}
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+
+}
+
+.extra-row-numbers {
+	.input-field__info {
+		margin-bottom: 24px;
+	}
+}
+
+.input-number-wrapper--right-align {
+	text-align: left;
+    width: 100%;
+
+    input {
+    	float: right;
+    }
+
+    input + label {
+    	margin-left: 0;
+    }
+}
+
+.input-number {
+    width: 60px;
+	text-align: center;
+}
+
+.input-number--wide {
+	width: 150px;
+}
+
+// Select input
+/*
+	Fall back styles, Chosen select styles can be found in:
+	vendor/chosen-modified.scss
+*/
+select {
+	width: 100%;
+}
+
+// Checkbox input
+
+.input-checkbox-wrapper {
+	display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+
+	& > label {
+		display: inline-block;
+    	float: left;
+    	margin-top: 6px;
+    	color: $grey;
+	}
+}
+
+.checkbox-label-wrapper {
+    display: inline-block;
+    float: left;
+    margin-right: 15px;
+
+	label {
+		@include circle-sizing($circle-size);
+		display: inline-block;
+		cursor: pointer;
+		background-color: $grey--x-light;
+    	background-image: url("../img/tick-icon.svg");
+    	background-size: 55%;
+    	background-position: center;
+    	background-repeat: no-repeat;
+    	transition: background 0.2s $fade-easing;
+	}
+
+	input:checked + label {
+		background-color: $purple;
+	}
+
+	input {
+		position: absolute;
+		margin-left: -9999px;
+		visibility: hidden;
+	}
+}
+
+// Orderable list input
+
+.list-group {
+	width: 100%;
+
+	/*
+		This is a bit glitchy on different browsers.
+
+		On chrome nothing is shown if the li has box-shadow instead of a border .
+		Safari renders only the element that you select inside the li and firefox
+		renders the image properly.
+
+		We need to see if there is a way of making it a bit more uniform
+	*/
+
+	li.sortable-ghost {
+		opacity: 0.3;
+	}
+
+	li.sortable-dragging {
+		opacity: 0;
+	}
+
+	li {
+		padding: 15px 0;
+		color: $grey;
+		border-bottom: 2px solid $grey;
+	    // box-shadow: 0px 2px;
+		cursor: move;
+    	cursor: -webkit-grabbing;
+	}
+
+	p {
+		float: left;
+	}
+
+	.number-label {
+	    display: inline-block;
+	}
+
+	.number-label input {
+		position: absolute;
+		left: -9999px;
+		display: none;
+	}
+
+	.number-label label {
+		@include circle-sizing($circle-size);
+		display: inline-block;
+		padding: 5px;
+		font-size: 14px;
+    	text-align: center;
+		margin-left: 8px;
+		background: $grey--x-light;
+    	transition: background 0.2s $fade-easing;
+	}
+
+
+	.number-label input:checked + label {
+		background: $purple;
+		color: $white;
+	}
+}
+
+.light-fittings-field .input-field__info:nth-of-type(1) {
+    margin-bottom: 1em;
+}
+
+.energy-use-wrapper {
+    margin: 0 -10px;
+	.col-2 {
+		margin-bottom: 0;
+	}
+
+	.input-field__info {
+		margin-top: 0;
+	}
+}
+
+.grid--double-pad .energy-use-wrapper {
+	margin: 0 -20px;
+}
+
+.extra-heating-systems,
+.energy-use {
+	margin-bottom: 1em;
+}

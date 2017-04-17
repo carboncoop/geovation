@@ -1,0 +1,53 @@
+body {
+	position: relative;
+}
+
+.bulding-map {
+	height: 100%;
+}
+
+.address-overlay {
+	position: absolute;
+	top: 200px;
+	left: 100px;
+	width: 400px;
+	padding:20px;
+}
+
+.address-overlay img {
+	position: absolute;
+	top:5px;
+	left:0;
+	z-index:1061;
+}
+
+.address-overlay .chosen-container {
+	margin-left:40px;
+}
+
+.address-overlay .chosen-container-single .chosen-single {
+	padding-left:30px;
+	background: $white;
+	border-bottom:0;
+	border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.proceed-to-form-given-address {
+	text-decoration:none;
+	position: absolute;
+	right: 0;
+	top: 20px;
+	right: -117px;
+	background: $salmon;
+	padding:15px 20px;
+	border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display:block;
+    opacity:0;
+}
+
+.proceed-to-form-given-address--visible {
+	display:block;
+	opacity:1;	
+}

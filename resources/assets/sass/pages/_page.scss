@@ -1,0 +1,32 @@
+
+.page h3 {
+	color: $purple;
+}
+
+.body-copy {
+	color: $grey--dark;
+}
+
+.body-copy ol {
+   list-style-type: decimal;
+   list-style-position: inside;
+   margin-bottom: 1rem;
+}
+
+.page-content {
+	padding: 0 40px;
+}
+
+.page-footer {
+	border-top: 1px solid $grey--x-light;
+	margin-top: 1.5em;
+	padding-top: 1.5em;
+}
+
+.page-footer a {
+	margin-right: 0.75em;
+}
+
+.page-content {
+	margin-bottom: 6em;
+}

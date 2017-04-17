@@ -1,0 +1,39 @@
+// Helpers is for mixins, variables and Sass functions.
+@import 'helpers/mixins';
+@import 'helpers/variables';
+
+// Base folder is for our reset, typography and other misc site wide fixes.
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/misc';
+
+// Components is for very specific reusable styles (e.g. buttons, navigation, icons).
+@import 'components/titles';
+@import 'components/buttons';
+@import 'components/inputs';
+@import 'components/forms';
+@import 'components/search';
+@import 'components/modals';
+@import 'components/reset-nav';
+
+// Layout is for the general styles for each reusable section of the site, and a place to house the grid.
+@import 'layout/grid';
+@import 'layout/body';
+@import 'layout/header';
+@import 'layout/footer';
+
+// Pages
+@import 'pages/homepage';
+@import 'pages/style-guide';
+@import 'pages/page';
+@import 'pages/overview';
+@import 'pages/form';
+@import 'pages/results';
+@import 'pages/map';
+
+// Elements
+@import 'elements/house-illustration';
+
+// Vendor
+@import 'vendor/chosen-modified';
+

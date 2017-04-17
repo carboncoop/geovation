@@ -1,0 +1,12 @@
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+.env.staging
+/public/build
+/public/css
+/public/js
+.DS_Store
+/nbproject
+Fieldwork_stage_site_database_backup.sql
