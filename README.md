@@ -1,17 +1,21 @@
 # Geovation - My Home Energy Planner 
-A project developed by [CarbonCoop](http://carbon.coop) and [Urbed](http://urbed.coop) 
-Give it a go at [myhomeenergysalford.carbon.coop/](http://myhomeenergysalford.carbon.coop/)
+A project developed by [Carbon Co-op](http://carbon.coop) and [Urbed](http://urbed.coop). Give it a go at  [myhomeenergysalford.carbon.coop/](http://myhomeenergysalford.carbon.coop/).
 
 ## Summary: 
-A way for householders to very quickly obtain accurate, comprehensive and usable information on the energy performance of their homes.
+A way for individuals and organisations to quickly obtain accurate, comprehensive, and usable information on the energy performance of UK homes.
 
 ## Problems: 
-Common problems around accurate home energy modelling and retrofit solutions. Housing stock one of least efficient in Europe; 2m homes in fuel poverty with knock on implications for health impacts Though homes are biggest purchase people make they know little about how they work and how they could be improved Trusted competent advice is hard to come by
+* Lack of accuracy in home energy modelling and retrofit solutions. 
+* UK housing stock is some of the least efficient in Europe.
+* 2m UK homes are in fuel poverty with additional implications for health and wellbeing. 
+* Homes are the biggest purchase people make and they know little about how they work and how they could be improved. 
+* Trusted competent advice is hard to come by.
 
 ## Solution 
-Opening up a complex tool to the wider public Enabling people to self assess, a free, user-friendly entry point into the pro service Looking for compromise between ease of use and accuracy: something OS and Land Registry data allows us to do
+* Making a building energy model accessible to the wider public with an acceptable compromise between accuracy and ease of use. 
+* Enabling people to self assess using a free and user-friendly entry point with the options to upgrade to a professional service as needed.
 
-Enter your address and the tool populates floor areas, external wall information + a few simple questions means we can deliver a report with 80% of the accuracy of our paid-for pro version Provides a context for comparison with other local or similar householders, see case studies, links to Community Energy organisations and funding opportunities Relies on ability to access OS data through partnering with a local authority Enables users to profile existing energy usage and gain an idea of what retrofit improvements might be possible, provides a pathway for future investment and, where applicable, grant assistance
+Enter your address and the tool populates floor areas and external wall information. Combined with a few simple questions this can deliver a report with 80% of the accuracy of the professional service. Also provides a context for comparison with other local houses, see case studies, links to Community Energy organisations and funding opportunities Relies on ability to access OS data through partnering with a local authority Enables users to profile existing energy usage and gain an idea of what retrofit improvements might be possible, provides a pathway for future investment and, where applicable, grant assistance
 
 ## Dissemination: 
 Via Community Energy organisations through networks and professional support organisations such as NEF (National Energy Foundation), Community Energy England
