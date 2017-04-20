@@ -1,0 +1,29 @@
+[33mcommit f2a4b295bdafb7c7cf185e10603ba363d079b642[m
+Author: cagabi <cagabi@lapiluka.org>
+Date:   Thu Apr 20 11:35:37 2017 +0100
+
+    Issue 3: database credentials removed
+
+[33mcommit dfcbd29ce874c89d213d47247d2dee50acfdafbd[m
+Author: cagabi <cagabi@lapiluka.org>
+Date:   Thu Apr 20 11:33:35 2017 +0100
+
+    model updated to last version
+
+[33mcommit a6c2ffbae6c2f7fd5020ff2b4a5e992f5b4162d2[m
+Author: cagabi <cagabi@lapiluka.org>
+Date:   Mon Apr 17 15:26:08 2017 +0100
+
+    Readme again
+
+[33mcommit 48da0b98c1b9dab0ad9fbeb1fe2e7034fb0435ed[m
+Author: cagabi <cagabi@lapiluka.org>
+Date:   Mon Apr 17 15:23:01 2017 +0100
+
+    Added license an updated readme
+
+[33mcommit e538973ff61fcd0ab44370dd78aa18b899d80c93[m
+Author: cagabi <cagabi@lapiluka.org>
+Date:   Mon Apr 17 14:44:01 2017 +0100
+
+    Commit inicial
