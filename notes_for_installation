@@ -19,11 +19,6 @@ In config/app.php
 Changed 'cipher' => 'AES-256-CBC',
 to 'cipher' => 'AES-128-CBC',
 
-Database
----------------
-Create it.
-Add name, user and password to config/database.php
-
 Import database
 ---------------
 Find it in Dropbox
