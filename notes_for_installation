@@ -47,6 +47,11 @@ Permission to avoid running the server (not totally sure that it works)
 	http://stackoverflow.com/questions/30639174/file-permissions-for-laravel-5-and-others
 
 
+log permissions
+---------------
+Ensure that apache (www-data) can create write /storage/logs/laravel.log
+sudo chown -R www-data:www-data /var/www/deploy.log
+
 
 
 

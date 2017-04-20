@@ -20,7 +20,7 @@ elixir(function(mix) {
         'vendor/protool/ui-openbem-r3.js',
         'vendor/protool/model/library-r6.js',
         'vendor/protool/model/datasets-r4.js',
-        'vendor/protool/model/model-r6.js',
+        'vendor/protool/model/model-r8.js',
         'vendor/protool/model/appliancesCarbonCoop-r1.js',
         'vendor/geodesy/vector3d.js',
         'vendor/geodesy/latlon-ellipsoidal.js',

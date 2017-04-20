@@ -1,5 +1,6 @@
 # Geovation - My Home Energy Planner 
-A project developed by CarbonCoop and Urbed Give it a go at geovation.carbon.coop/
+A project developed by [CarbonCoop](http://carbon.coop) and [Urbed](http://urbed.coop) 
+Give it a go at [geovation.carbon.coop](http://geovation.carbon.coop)
 
 ## Summary: 
 A way for householders to very quickly obtain accurate, comprehensive and usable information on the energy performance of their homes.

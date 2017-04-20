@@ -813,8 +813,9 @@ var dataIn = {
     },
     "measures": {
         "energy_systems": {}
-    }
-}
+    },
+    "fuels": JSON.parse(JSON.stringify(datasets.fuels))
+};
 
 
 // substitute in user's values
@@ -1062,7 +1063,8 @@ function updateQueryStringParameter(uri, key, value) {
 
 $(document).ready(function(){
 	calc.run(dataIn);
-	var spaceHeatingDemand = dataIn.fabric_energy_efficiency;
+	var spaceHeatingDemand = dataIn.space_heating_demand_m2;
+        console.log(JSON.stringify(dataIn));
 
     // var primaryEnergy = dataIn.primary_energy_use_m2;
 	var primaryEnergy = 0;
