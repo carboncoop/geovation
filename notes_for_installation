@@ -19,12 +19,10 @@ In config/app.php
 Changed 'cipher' => 'AES-256-CBC',
 to 'cipher' => 'AES-128-CBC',
 
-Create database
+Database
 ---------------
-name-> geovation
-user-> cagabi
-password-> emonalcachofa
-It can be changed in config/database.php
+Create it.
+Add name, user and password to config/database.php
 
 Import database
 ---------------
