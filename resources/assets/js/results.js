@@ -123,8 +123,8 @@ function getURLParameter(name, fallback) {
 
 
 var dataIn = {
-    "scenario_name": "My Home Energy",
-    "household": {},
+    //"scenario_name": "My Home Energy",
+    //"household": {},
     "region": 7, // West Pennines
     "altitude": getURLParameter('altitude'),
     "use_custom_occupancy": false, // this means the SAP average based on floor area will be used
@@ -187,37 +187,35 @@ var dataIn = {
                 "ff": 0.7
             },
         ],
-        "measures": {}
+        // "measures": {} // NA
     },
     "ventilation": {
-        "number_of_chimneys": 0,
-        "number_of_openflues": 0,
-        "number_of_intermittentfans": 2.5, // 2 for properties < 100sqm, 3 for properties > 100sqm
-        "number_of_passivevents": 0,
-        "number_of_fluelessgasfires": 0,
-        "air_permeability_test": 1, //this means the properties below (suspended wooden floor, draught lobby etc can be ignored)
-        "air_permeability_value": 0, // 15: very draughty, 10: DIY draughtproofing, 5: professional air-tightness, 1.5: extreme air tightness
+        //"number_of_chimneys": 0,
+        //"number_of_openflues": 0,
+        //"number_of_intermittentfans": 2.5, // 2 for properties < 100sqm, 3 for properties > 100sqm
+        //"number_of_passivevents": 0,
+        //"number_of_fluelessgasfires": 0,
+        "ventilation_type": "IE", // IE = d =>   d means natural ventilation        
         "dwelling_construction": "timberframe",
         "suspended_wooden_floor": 0,
         "draught_lobby": false,
         "percentage_draught_proofed": 0,
+        "air_permeability_test": 1, //this means the properties below (suspended wooden floor, draught lobby etc can be ignored)
+        "air_permeability_value": 0, // 15: very draughty, 10: DIY draughtproofing, 5: professional air-tightness, 1.5: extreme air tightness
         "number_of_sides_sheltered": 0,
-        "ventilation_type": "d", // d means natural ventilation
         "system_air_change_rate": 0.5,
-        "balanced_heat_recovery_efficiency": 65
+        system_specific_fan_power: 3, // for MVHR
+        "balanced_heat_recovery_efficiency": 65,
+        IVF: [],
+        EVP: [{ventilation_rate: 10}, {ventilation_rate: 10}] // 2 for properties < 100sqm, 3 for properties > 100sqm
     },
-    LAC_calculation_type: true,
-    "LAC": {
-        "use_SAP_lighting": 1,
-        "use_SAP_appliances": 1, // leave at 1 if answered yes to "Are most of your appliance rated A+ or better"
-        "use_SAP_cooking": 1,
-        "LLE": 100, // number of low energy light fittings
-        "L": 100, // total number of light fittings
-        "energy_efficient_appliances": false,
-        "energy_efficient_cooking": false,
-        "reduced_heat_gains_lighting": 1
+    "space_heating": {
+        "use_utilfactor_forgains": true,
+        "heating_off_summer": true
     },
+    use_generation: false,
     "generation": {
+        use_PV_calculator: false, // when set to true, solar_annual_kwh is calculated Using the PV calculator
         "solar_annual_kwh": 0,
         "solar_fraction_used_onsite": 0.5,
         "solar_FIT": 0,
@@ -236,140 +234,76 @@ var dataIn = {
         "solarpv_annual_kwh": 0,
         "total_energy_income": 0
     },
-    "currentenergy": {
+    LAC_calculation_type: 'SAP',
+    "LAC": {
+        "LLE": 100, // number of low energy light fittings
+        "L": 100, // total number of light fittings
+        "energy_efficient_appliances": false,
+        "energy_efficient_cooking": false,
+        "reduced_heat_gains_lighting": 1
+    },
+    use_SHW: false, // if set to true Solar Hot Water is included in the calculations
+    water_heating: {
+        override_annual_energy_content: false, // true || false
+        annual_energy_content: 0, // input to the module when override_annual_energy_content is set to true
+        hot_water_control_type: 'no_cylinder_thermostat', // no_cylinder_thermostat || Cylinder thermostat, water heating not separately timed || Cylinder thermostat, water heating separately timed
+        pipework_insulation: 'Uninsulated primary pipework', // Uninsulated primary pipework || First 1m from cylinder insulated || All accesible piperwok insulated || Fully insulated primary pipework
+        contains_dedicated_solar_storage_or_WWHRS: 0, // Volume in litres
+        solar_water_heating: false, // true || false
+        hot_water_store_in_dwelling: true, // 	true || false
+        community_heating: false, //	true || false
+        storage_type: {// if undefined, it means there is no storage
+            name: "Cylinder with electric immersion, up to 130 litres, 80mm loose fit jacket (DIY)",
+            category: 'Cylinders with inmersion',
+            manufacturer_loss_factor: 0,
+            temperature_factor_a: 0,
+            storage_volume: 110,
+            loss_factor_b: 0.024,
+            volume_factor_b: 1.063,
+            temperature_factor_b: 0.6,
+            declared_loss_factor_known: false,
+        }
+    },
+    water_heating: {
+        low_water_use_design: true, //
+        //"instantaneous_hotwater": 0,
+        override_annual_energy_content: false, // true || false
+        //annual_energy_content: 0, // input to the module when override_annual_energy_content is set to true
+        hot_water_control_type: '"cylinder_thermostat_without_timer', // no_cylinder_thermostat || Cylinder thermostat, water heating not separately timed || Cylinder thermostat, water heating separately timed
+        pipework_insulation: 'All accesible piperwok insulated', // Uninsulated primary pipework || First 1m from cylinder insulated || All accesible piperwok insulated || Fully insulated primary pipework
+        contains_dedicated_solar_storage_or_WWHRS: 0, // Volume in litres
+        solar_water_heating: false, // true || false
+        hot_water_store_in_dwelling: true, // 	true || false
+        community_heating: false, //	true || false
+        storage_type: {// if undefined, it means there is no storage
+            name: "Cylinder with electric immersion, up to 130 litres, 80mm loose fit jacket (DIY)",
+            category: 'Cylinders with inmersion',
+            manufacturer_loss_factor: 0,
+            temperature_factor_a: 0,
+            storage_volume: 150,
+            loss_factor_b: 0,
+            volume_factor_b: 0,
+            temperature_factor_b: 0,
+            declared_loss_factor_known: false,
+        }
+    },
+    temperature: {
+        target: 21,
+        living_area: 20
+    },
+    currentenergy: {
         use_by_fuel: {
             'Standard Tariff': {},
             'Mains Gas': {}
+        },
+        onsite_generation: false, // true || false
+        generation: {
+            annual_generation: 1500,
+            fraction_used_onsite: 0.25,
+            annual_FIT_income: 0
         }
     },
-    "water_heating": {
-        "low_water_use_design": 1, // this checkbox should always be checked
-        "instantaneous_hotwater": 0,
-        "solar_water_heating": false,
-        "pipework_insulated_fraction": 1,
-        "manufacturer_loss_factor": 0,
-        "storage_volume": 150, // if this exists, assume volume 150. Q7/8?????
-        "temperature_factor_a": 0,
-        "loss_factor_b": 0,
-        "volume_factor_b": 0,
-        "temperature_factor_b": 0,
-        //hot_water_store_in_dwelling:, dependent on question answer Q7/8?????
-        "hot_water_control_type": "cylinder_thermostat_without_timer",
-        "annual_energy_content": 911.7791502172221 // not really sure what this is - it doesn't seem to have much effect??
-    },
-    "SHW": {},
-    "appliancelist": {
-        "list": [
-            {
-                "name": "LED Light",
-                "power": 6,
-                "hours": 12
-            }
-        ]
-    },
-    "applianceCarbonCoop": {
-        "list": []
-    },
-    "temperature": {
-        "responsiveness": 1, // options from Q8b ?????
-        "target": 21, // keep at 21
-        "control_type": 1,
-        "living_area": 20 // living area set at 20
-    },
-    "space_heating": {
-        "use_utilfactor_forgains": true
-    },
-    "energy_systems": {// these values should affect the "Primary energy graph"
-       /* "cooking": [// this needs to be ammended with user input
-            {
-                "system": "electric",
-                "fraction": 1,
-                "efficiency": 1,
-                "name": "Standard Electric",
-                "summer": 1,
-                "winter": 1,
-                "fuel": "electric",
-                "id": 1,
-                "fans_and_pumps": 0,
-                "combi_keep_hot": 0
-            }
-        ],
-        // Is this right ???!
-        "solarpv2": [
-            {
-                "system": "electric",
-                "fraction": 1,
-                "efficiency": 1,
-                "name": "Standard Electric",
-                "summer": 1,
-                "winter": 1,
-                "fuel": "electric",
-                "id": 1,
-                "fans_and_pumps": 0,
-                "combi_keep_hot": 0
-            }
-        ],
-        "waterheating": [// this needs to be ammended with user input
-            {
-                "system": "gasboiler",
-                "fraction": 1,
-                "efficiency": 0.7965848065679438,
-                "name": "Standard Gas boiler",
-                "summer": "0.702",
-                "winter": "0.803",
-                "fuel": "gas",
-                "id": 0,
-                "fans_and_pumps": 45,
-                "combi_keep_hot": 0
-            }
-        ],
-        "spaceheating": [// this needs to be ammended with user input
-            {
-                "system": "gasboiler",
-                "fraction": 0.7,
-                "efficiency": "0.794",
-                "name": "Standard Gas boiler",
-                "summer": "0.702",
-                "winter": "0.803",
-                "fuel": "gas",
-                "id": 0,
-                "fans_and_pumps": 45,
-                "combi_keep_hot": 0
-            }
-        ],
-        "lighting": [
-            {
-                "system": "electric",
-                "fraction": 1,
-                "efficiency": 1,
-                "name": "Standard Electric",
-                "summer": 1,
-                "winter": 1,
-                "fuel": "electric",
-                "id": 0,
-                "fans_and_pumps": 45,
-                "combi_keep_hot": 0
-            }
-        ],
-        "appliances": [
-            {
-                "system": "electric",
-                "fraction": 1,
-                "efficiency": 1,
-                "name": "Standard Electric",
-                "summer": 1,
-                "winter": 1,
-                "fuel": "electric",
-                "id": 0,
-                "fans_and_pumps": 45,
-                "combi_keep_hot": 0
-            }
-        ],*/
-    },
     heating_systems: [],
-    "measures": {
-        "energy_systems": {}
-    },
     "fuels": JSON.parse(JSON.stringify(datasets.fuels))
 };
 
@@ -378,7 +312,7 @@ var dataIn = {
 
 
 // results is a variable defined in results.blade.php
-
+console.log(results)
 dataIn.fabric.elements = results.elements;
 dataIn.floors = results.floors;
 dataIn.LAC.LLE = results.LACLighting.lowEnergyLightFittings;
@@ -391,8 +325,6 @@ dataIn.LAC.energy_efficient_cooking = results.LAC.ARatedAppliances == "true" ? t
 dataIn.currentenergy.use_by_fuel['Standard Tariff'].annual_use = results.bills.electricity;
 //dataIn.currentenergy.energyitems["gas-kwh"].quantity = results.bills.gas;
 dataIn.currentenergy.use_by_fuel['Mains Gas'].annual_use = results.bills.gas;
-
-dataIn.energy_systems.space_heating = [];
 
 for (var i = 0; i < results.spaceHeating.length; i++) {
     dataIn.heating_systems.push({
@@ -434,10 +366,6 @@ if (results.spaceHeating.length > 1) {
     dataIn.heating_systems[0].fraction_space = 0.9;
     dataIn.heating_systems[1].fraction_space = 0.1;
 }
-
-// Use primary space heating for these
-dataIn.temperature.responsiveness = results.spaceHeating[0].responsiveness;
-dataIn.temperature.control_type = results.spaceHeating[0].controlType;
 
 if (results.solarPanels) {
     dataIn.use_generation = true;
