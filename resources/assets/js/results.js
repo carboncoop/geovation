@@ -121,6 +121,19 @@ function getURLParameter(name, fallback) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || fallback
 }
 
+var defaultHotWaterSystem = {
+    name: "Typical Gas\/LPG system boiler with rads or underfloor heating pipes in timber floor",
+    category: 'System boilers',
+    winter_efficiency: 80,
+    summer_efficiency: 70,
+    fans_and_supply_pumps: 0,
+    "provides": "water",
+    combi_loss: 0,
+    primary_circuit_loss: 'No',
+    "fraction_water_heating": 1,
+    "instantaneous_water_heating": false,
+    "fuel": "Mains Gas",
+}
 
 var dataIn = {
     //"scenario_name": "My Home Energy",
@@ -243,49 +256,17 @@ var dataIn = {
         "reduced_heat_gains_lighting": 1
     },
     use_SHW: false, // if set to true Solar Hot Water is included in the calculations
-    water_heating: {
-        override_annual_energy_content: false, // true || false
-        annual_energy_content: 0, // input to the module when override_annual_energy_content is set to true
-        hot_water_control_type: 'no_cylinder_thermostat', // no_cylinder_thermostat || Cylinder thermostat, water heating not separately timed || Cylinder thermostat, water heating separately timed
-        pipework_insulation: 'Uninsulated primary pipework', // Uninsulated primary pipework || First 1m from cylinder insulated || All accesible piperwok insulated || Fully insulated primary pipework
-        contains_dedicated_solar_storage_or_WWHRS: 0, // Volume in litres
-        solar_water_heating: false, // true || false
-        hot_water_store_in_dwelling: true, // 	true || false
-        community_heating: false, //	true || false
-        storage_type: {// if undefined, it means there is no storage
-            name: "Cylinder with electric immersion, up to 130 litres, 80mm loose fit jacket (DIY)",
-            category: 'Cylinders with inmersion',
-            manufacturer_loss_factor: 0,
-            temperature_factor_a: 0,
-            storage_volume: 110,
-            loss_factor_b: 0.024,
-            volume_factor_b: 1.063,
-            temperature_factor_b: 0.6,
-            declared_loss_factor_known: false,
-        }
-    },
-    water_heating: {
+    water_heating: {// the system for water heating is a gas boiler with no storage and no solar, so we don't need most of the following
         low_water_use_design: true, //
         //"instantaneous_hotwater": 0,
         override_annual_energy_content: false, // true || false
         //annual_energy_content: 0, // input to the module when override_annual_energy_content is set to true
-        hot_water_control_type: '"cylinder_thermostat_without_timer', // no_cylinder_thermostat || Cylinder thermostat, water heating not separately timed || Cylinder thermostat, water heating separately timed
-        pipework_insulation: 'All accesible piperwok insulated', // Uninsulated primary pipework || First 1m from cylinder insulated || All accesible piperwok insulated || Fully insulated primary pipework
-        contains_dedicated_solar_storage_or_WWHRS: 0, // Volume in litres
-        solar_water_heating: false, // true || false
-        hot_water_store_in_dwelling: true, // 	true || false
-        community_heating: false, //	true || false
-        storage_type: {// if undefined, it means there is no storage
-            name: "Cylinder with electric immersion, up to 130 litres, 80mm loose fit jacket (DIY)",
-            category: 'Cylinders with inmersion',
-            manufacturer_loss_factor: 0,
-            temperature_factor_a: 0,
-            storage_volume: 150,
-            loss_factor_b: 0,
-            volume_factor_b: 0,
-            temperature_factor_b: 0,
-            declared_loss_factor_known: false,
-        }
+        //hot_water_control_type: 'no_cylinder_thermostat', // no_cylinder_thermostat || Cylinder thermostat, water heating not separately timed || Cylinder thermostat, water heating separately timed
+        //pipework_insulation: 'All accesible piperwok insulated', // Uninsulated primary pipework || First 1m from cylinder insulated || All accesible piperwok insulated || Fully insulated primary pipework
+        //contains_dedicated_solar_storage_or_WWHRS: 0, // Volume in litres
+        //solar_water_heating: false, // true || false
+        //hot_water_store_in_dwelling: true, // 	true || false
+        //community_heating: false, //	true || false
     },
     temperature: {
         target: 21,
@@ -312,7 +293,6 @@ var dataIn = {
 
 
 // results is a variable defined in results.blade.php
-console.log(results)
 dataIn.fabric.elements = results.elements;
 dataIn.floors = results.floors;
 dataIn.LAC.LLE = results.LACLighting.lowEnergyLightFittings;
@@ -348,24 +328,15 @@ for (var i = 0; i < results.spaceHeating.length; i++) {
         dataIn.heating_systems[0].main_space_heating_system = 'mainHS1';
     else
         dataIn.heating_systems[1].main_space_heating_system = 'secondaryHS';
-
-    /*    dataIn.energy_systems.space_heating.push({
-     "system": results.spaceHeating[i].title,
-     "fraction": 1, // if there is an additional heating source, this needs to come down to 0.9 and the other source should be 0.1
-     "efficiency": results.spaceHeating[i].summer,
-     "name": "Standard Gas boiler",
-     "summer": results.spaceHeating[i].summer,
-     "winter": results.spaceHeating[i].winter,
-     "fuel": results.spaceHeating[i].fuel,
-     "id": 0,
-     "fans_and_pumps": 45,
-     "combi_keep_hot": 0
-     });*/
 }
+
 if (results.spaceHeating.length > 1) {
     dataIn.heating_systems[0].fraction_space = 0.9;
     dataIn.heating_systems[1].fraction_space = 0.1;
 }
+
+// Add hot water system
+dataIn.heating_systems.push(defaultHotWaterSystem);
 
 if (results.solarPanels) {
     dataIn.use_generation = true;
@@ -576,8 +547,6 @@ function updateQueryStringParameter(uri, key, value) {
 
 
 $(document).ready(function () {
-    console.log(dataIn);
-    console.log(results);
     calc.run(dataIn);
     var spaceHeatingDemand = dataIn.space_heating_demand_m2;
 

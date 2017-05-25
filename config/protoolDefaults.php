@@ -205,7 +205,7 @@ return [
             "controlType" => 2,
             'central_heating_pump' => 120,
             'combi_loss' => 0,
-            'fans_and_supply_pumps' => 45,
+            'fans_and_supply_pumps' => 0,
             'primary_circuit_loss' => 'Yes',
             'temperature_adjustment' => 0
         ],
