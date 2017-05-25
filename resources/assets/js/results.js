@@ -347,6 +347,8 @@ dataIn.generation.solarpv_inclination = 35;
 dataIn.generation.solarpv_orientation = 4; //South
 dataIn.generation.solarpv_overshading = 1; // None or very little, less than 20%
 
+console.log("To see the house in more detail, paste the following string in the Import page of MyHomeEnergyPlanner");
+console.log('{"master":' + JSON.stringify(dataIn) + '}');
 
 var chartWidth = 500,
 // chartHeight = 120,
