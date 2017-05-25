@@ -79,7 +79,7 @@ var structuredVars = {
         'door-type': getURLParameter('door-type'),
         'loft-insulation': getURLParameter('loft-insulation'),
         'floor-insulation': getURLParameter('floor-insulation'),
-    //    'home-draughts': getURLParameter('home-draughts')
+        //    'home-draughts': getURLParameter('home-draughts')
     },
     services: {
         'home-heating': getURLParameter('home-heating'),
@@ -338,21 +338,21 @@ if (results.spaceHeating.length > 1) {
 // Add hot water system
 dataIn.heating_systems.push(defaultHotWaterSystem);
 
-switch(results.airPermeabilityValue.title){
+switch (results.airPermeabilityValue.title) {
     case 'Very draughty':
-        dataIn.ventilation.air_permeability_value= 15;
+        dataIn.ventilation.air_permeability_value = 15;
         break;
     case 'Quite draughty':
-        dataIn.ventilation.air_permeability_value= 12;
+        dataIn.ventilation.air_permeability_value = 12;
         break;
     case 'Not draughty':
-        dataIn.ventilation.air_permeability_value= 7.5;
+        dataIn.ventilation.air_permeability_value = 7.5;
         break;
     case 'Very air tight':
-        dataIn.ventilation.air_permeability_value= 2.5;
+        dataIn.ventilation.air_permeability_value = 2.5;
         break;
     case "Don't know":
-        dataIn.ventilation.air_permeability_value= 12;
+        dataIn.ventilation.air_permeability_value = 12;
         break;
 }
 
@@ -571,35 +571,8 @@ $(document).ready(function () {
     calc.run(dataIn);
     var spaceHeatingDemand = dataIn.space_heating_demand_m2;
 
-    // var primaryEnergy = dataIn.primary_energy_use_m2;
-    var primaryEnergy = 0;
+    var primaryEnergy = dataIn.primary_energy_use_m2;
     var primaryEnergyBills = dataIn.currentenergy.primaryenergy_annual_kwhm2;
-
-
-    if (typeof dataIn.energy_requirements['lighting'] !== "undefined") {
-        primaryEnergy += dataIn.energy_requirements['lighting'].quantity / dataIn.TFA;
-    }
-
-    if (typeof dataIn.energy_requirements['appliances'] !== "undefined") {
-        primaryEnergy += dataIn.energy_requirements['appliances'].quantity / dataIn.TFA;
-    }
-
-    if (typeof dataIn.energy_requirements['cooking'] !== "undefined") {
-        primaryEnergy += dataIn.energy_requirements['cooking'].quantity / dataIn.TFA;
-    }
-
-    if (typeof dataIn.energy_requirements['waterheating'] !== "undefined") {
-        primaryEnergy += dataIn.energy_requirements['waterheating'].quantity / dataIn.TFA;
-    }
-
-    if (typeof dataIn.energy_requirements['space_heating'] !== "undefined") {
-        primaryEnergy += dataIn.energy_requirements['space_heating'].quantity / dataIn.TFA;
-    }
-
-    if (typeof dataIn.energy_requirements['fans_and_pumps'] !== "undefined") {
-        primaryEnergy += dataIn.energy_requirements['fans_and_pumps'].quantity / dataIn.TFA;
-    }
-
 
     var co2Emissions = dataIn.kgco2perm2
     var co2EmissionsBills = dataIn.currentenergy.total_co2m2
