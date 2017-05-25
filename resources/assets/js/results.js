@@ -79,7 +79,7 @@ var structuredVars = {
         'door-type': getURLParameter('door-type'),
         'loft-insulation': getURLParameter('loft-insulation'),
         'floor-insulation': getURLParameter('floor-insulation'),
-        'home-draughts': getURLParameter('home-draughts')
+    //    'home-draughts': getURLParameter('home-draughts')
     },
     services: {
         'home-heating': getURLParameter('home-heating'),
@@ -338,6 +338,24 @@ if (results.spaceHeating.length > 1) {
 // Add hot water system
 dataIn.heating_systems.push(defaultHotWaterSystem);
 
+switch(results.airPermeabilityValue.title){
+    case 'Very draughty':
+        dataIn.ventilation.air_permeability_value= 15;
+        break;
+    case 'Quite draughty':
+        dataIn.ventilation.air_permeability_value= 12;
+        break;
+    case 'Not draughty':
+        dataIn.ventilation.air_permeability_value= 7.5;
+        break;
+    case 'Very air tight':
+        dataIn.ventilation.air_permeability_value= 2.5;
+        break;
+    case "Don't know":
+        dataIn.ventilation.air_permeability_value= 12;
+        break;
+}
+
 if (results.solarPanels) {
     dataIn.use_generation = true;
 }
@@ -549,6 +567,7 @@ function updateQueryStringParameter(uri, key, value) {
 
 
 $(document).ready(function () {
+    console.log(results);
     calc.run(dataIn);
     var spaceHeatingDemand = dataIn.space_heating_demand_m2;
 
