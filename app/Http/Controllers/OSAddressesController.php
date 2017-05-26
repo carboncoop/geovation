@@ -163,7 +163,7 @@ class OSAddressesController extends Controller {
 
         $floorElements = [];
         // $floorElements is used in the fabric calculations, and must only refer to the one touching the ground - if the building is an apartment with another property below it should not have a floor element.
-        if ($request['flat-or-apartment-below'] != "true") {
+        if ($request['flat-or-apartment'] != 'true' || $request['flat-or-apartment-below'] != "true") {
             array_push($floorElements, [
                 "name" => '',
                 "type" => 'floor',
@@ -178,7 +178,7 @@ class OSAddressesController extends Controller {
         // Roofs
         // If the building is an apartment with a property above, don't add a roof
         $roofs = [];
-        if ($request['flat-or-apartment-above'] != "true") {
+        if ($request['flat-or-apartment'] != 'true' || $request['flat-or-apartment-above'] != "true") {
             array_push($roofs, [
                 "type" => 'roof',
                 "area" => (float) $selectedFloorArea,
