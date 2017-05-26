@@ -8,8 +8,8 @@ use App\OSAddress;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OSAddressesController extends Controller
-{
+class OSAddressesController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -22,17 +22,16 @@ class OSAddressesController extends Controller
     //     $osAddresses = OSAddress::where('postcode', "M7 3GJ")->get();
     //     // $osAddresses = OSAddress::findByPostcode("M7 3PJ");
     //     // $osAddresses = (new OSAddress)->findByPostcode("M7 3PJ");
-
     //     return view('os-addresses.index', compact('osAddresses'));
     // }
 
-    public function postcode(Request $request){
+    public function postcode(Request $request) {
         $postcode = $request->input('postcode');
         // $osAddresses = OSAddress::where('postcode', $postcode)->get()->sortBy('buildingNumber');
         $osAddresses = OSAddress::has('building')->has('height')->where('postcode', $postcode)->get()->sortBy('buildingNumber');
 
 
-        if (!count($osAddresses)){
+        if (!count($osAddresses)) {
             // dd(!count($osAddresses));
             Session::flash('noAddressesFound', true);
 
@@ -40,10 +39,9 @@ class OSAddressesController extends Controller
         }
 
         return view('os-addresses.postcode', compact('osAddresses'));
-
     }
 
-    public function building($osID){
+    public function building($osID) {
         $osAddress = OSAddress::where('osTopoTOID', $osID)->first();
 
         $windowTypes = config('protoolDefaults.windowTypes');
@@ -53,7 +51,7 @@ class OSAddressesController extends Controller
         return view('form', compact('osAddress', 'windowTypes', 'doorTypes', 'protoolDefaults'));
     }
 
-    public function results($osID, Request $request){
+    public function results($osID, Request $request) {
 
         $osAddress = OSAddress::where('osTopoTOID', $osID)->first();
 
@@ -62,21 +60,43 @@ class OSAddressesController extends Controller
 
         $request->flash();
 
-        $this->validate($request, [
+        // Validation
+        $validation_array = [
             // 'title' => 'required|unique:posts|max:255',
             'build-storeys' => 'required',
             'wall-material' => 'required',
-            'floor-insulation' => 'required',
-            'loft-insulation' => 'required',
+            //'floor-insulation' => 'required',
+            //'loft-insulation' => 'required',
             'home-draughts' => 'required',
             'home-heating' => 'required',
             'window-type' => 'required',
-            // 'door-type' => 'required'
-        ]);
+                // 'door-type' => 'required'
+        ];
+
+        echo('flat: ');
+        var_dump($request["flat-or-apartment"]);
+        echo('<br />below: ');
+        var_dump($request["flat-or-apartment-below"]);
+        echo('<br />above: ');
+        var_dump($request["flat-or-apartment-above"]);
+
+        if (is_null($request["flat-or-apartment"])) {
+            $validation_array['floor-insulation'] = 'required';
+            $validation_array['loft-insulation'] = 'required';
+        } else {
+            if ($request['flat-or-apartment-below'] != "true") {
+                $validation_array['floor-insulation'] = 'required';
+                echo('<br /> I am in');
+            }
+            if ($request['flat-or-apartment-above'] != 'true') {
+                $validation_array['loft-insulation'] = 'required';
+            }
+        }
+        $this->validate($request, $validation_array);
 
         // if user has modified the floor area, use that, else use the OS data.
-        $selectedFloorArea = ($request["floor-area-user-modified"] != null ) ? str_replace( ',', '', $request["floor-area-user-modified"]) : $request["floor-area"];
-        
+        $selectedFloorArea = ($request["floor-area-user-modified"] != null ) ? str_replace(',', '', $request["floor-area-user-modified"]) : $request["floor-area"];
+
         $selectedBuildDate = $request["build-date"];
 
 
@@ -113,7 +133,7 @@ class OSAddressesController extends Controller
         $selectedHomeHeatingSecondary = $request["home-heating-extra-1"];
 
 
-        $resultsData =[];
+        $resultsData = [];
 
 
 
@@ -124,8 +144,8 @@ class OSAddressesController extends Controller
         $floors = [];
         // $floors is a reference to all the floors to calculate total floor area
         // Number of floors
-        for ($i = 0 ; $i < $request["build-storeys"] ; $i++){
-            if ($selectedRoomInRoof === "true" && ($i == $request["build-storeys"] - 1)){
+        for ($i = 0; $i < $request["build-storeys"]; $i++) {
+            if ($selectedRoomInRoof === "true" && ($i == $request["build-storeys"] - 1)) {
                 // if there is an attic/room in roof, the floor area of this level is estimated
                 // to be 60% of floor area. NB For the fabric/heat loss floor calculation, the
                 // floor area is still assumed to be that of the floor below. 
@@ -140,16 +160,16 @@ class OSAddressesController extends Controller
         }
         $resultsData["floors"] = $floors;
 
-        
+
         $floorElements = [];
         // $floorElements is used in the fabric calculations, and must only refer to the one touching the ground - if the building is an apartment with another property below it should not have a floor element.
-        if ($request['flat-or-apartment-below'] != "true"){
+        if ($request['flat-or-apartment-below'] != "true") {
             array_push($floorElements, [
                 "name" => '',
                 "type" => 'floor',
                 "area" => (float) $selectedFloorArea,
-                "h" => 2.7, 
-                "l" => 0, 
+                "h" => 2.7,
+                "l" => 0,
                 "uvalue" => config('protoolDefaults.floorInsulationTypes')[$selectedFloorInsulationType]["uvalue"]
             ]);
         }
@@ -158,24 +178,22 @@ class OSAddressesController extends Controller
         // Roofs
         // If the building is an apartment with a property above, don't add a roof
         $roofs = [];
-        if ($request['flat-or-apartment-above'] != "true"){
+        if ($request['flat-or-apartment-above'] != "true") {
             array_push($roofs, [
                 "type" => 'roof',
                 "area" => (float) $selectedFloorArea,
                 "uvalue" => config('protoolDefaults.loftInsulation')[$selectedLoftInsulation]["uvalue"]
             ]);
         }
-        
+
 
 
         // Window orientation codes
-
         // 0 North
         // 1 NE/NW
         // 2 East/West
         // 3 SE/SW
         // 4 South
-
         // Overshading codes, we are assuming average overshading
         // 0 Heavy, 80%
         // 1 More than average > 60%-80%
@@ -185,8 +203,8 @@ class OSAddressesController extends Controller
 
         $windows = [];
         // $selectedWindowTypeTitle = config('protoolDefaults.windowTypes')[$selectedWindowType]["title"];
-        if ($request["windows-north"] > 0){
-            for ($i = 0 ; $i < $request["windows-north"] ; $i++){
+        if ($request["windows-north"] > 0) {
+            for ($i = 0; $i < $request["windows-north"]; $i++) {
                 $dataElement = config('protoolDefaults.windowTypes')[$selectedWindowType];
                 $dataElement["orientation"] = 0;
                 $dataElement["subtractfrom"] = 0;
@@ -195,8 +213,8 @@ class OSAddressesController extends Controller
             }
         }
 
-        if ($request["windows-south"] > 0){
-            for ($i = 0 ; $i < $request["windows-south"] ; $i++){
+        if ($request["windows-south"] > 0) {
+            for ($i = 0; $i < $request["windows-south"]; $i++) {
                 $dataElement = config('protoolDefaults.windowTypes')[$selectedWindowType];
                 $dataElement["orientation"] = 4;
                 $dataElement["subtractfrom"] = 0;
@@ -205,8 +223,8 @@ class OSAddressesController extends Controller
             }
         }
 
-        if ($request["windows-east-west"] > 0){
-            for ($i = 0 ; $i < $request["windows-east-west"] ; $i++){
+        if ($request["windows-east-west"] > 0) {
+            for ($i = 0; $i < $request["windows-east-west"]; $i++) {
                 $dataElement = config('protoolDefaults.windowTypes')[$selectedWindowType];
                 $dataElement["orientation"] = 2;
                 $dataElement["subtractfrom"] = 0;
@@ -218,14 +236,14 @@ class OSAddressesController extends Controller
 
 
         $doors = [];
-        if ($selectedApartment == true){
-                $dataElement = config('protoolDefaults.doorTypes')['apartment'];
-                $dataElement["orientation"] = 0;
-                $dataElement["subtractfrom"] = 0;
-                $dataElement["type"] = "door";
-                array_push($doors, $dataElement);
+        if ($selectedApartment == true) {
+            $dataElement = config('protoolDefaults.doorTypes')['apartment'];
+            $dataElement["orientation"] = 0;
+            $dataElement["subtractfrom"] = 0;
+            $dataElement["type"] = "door";
+            array_push($doors, $dataElement);
         } else {
-            for ($i = 0 ; $i < 2 ; $i++){
+            for ($i = 0; $i < 2; $i++) {
                 $dataElement = config('protoolDefaults.doorTypes')['house'];
                 $dataElement["orientation"] = 0;
                 $dataElement["subtractfrom"] = 0;
@@ -233,12 +251,12 @@ class OSAddressesController extends Controller
                 array_push($doors, $dataElement);
             }
         }
-        
+
 
         // All the property's walls are combined into a single wall with id=0 from which all windows and doors are subtracted 
 
-        if ($selectedRoomInRoof === "true"){
-            $wallHeatLossArea = $request["external-perimeter"] * 2.7 * ($request["build-storeys"] - 1) + (11 * sqrt($request["external-perimeter"]/1.5));
+        if ($selectedRoomInRoof === "true") {
+            $wallHeatLossArea = $request["external-perimeter"] * 2.7 * ($request["build-storeys"] - 1) + (11 * sqrt($request["external-perimeter"] / 1.5));
         } else {
             $wallHeatLossArea = $request["external-perimeter"] * 2.7 * $request["build-storeys"];
         }
@@ -270,8 +288,8 @@ class OSAddressesController extends Controller
         ];
 
         $resultsData["bills"] = [
-            "electricity" => str_replace( ',', '', $request["electricity-usage"]),
-            "gas" => str_replace( ',', '', $request["gas-usage"]),
+            "electricity" => str_replace(',', '', $request["electricity-usage"]),
+            "gas" => str_replace(',', '', $request["gas-usage"]),
         ];
 
         $resultsData["preferences"] = [
@@ -287,11 +305,11 @@ class OSAddressesController extends Controller
 
         // add primary heating
         array_push($resultsData["spaceHeating"], config('protoolDefaults.spaceHeatingSystemsPrimary')[$selectedHeating]);
-            
+
 
 
         // add secondary heating if necessary
-        if ($selectedAnotherHeatingSource === "true"){
+        if ($selectedAnotherHeatingSource === "true") {
             array_push($resultsData["spaceHeating"], config('protoolDefaults.spaceHeatingSystemsSecondary')[$selectedHomeHeatingSecondary]);
             $resultsData["spaceHeating"][0]["fraction"] = 0.9;
             $resultsData["spaceHeating"][1]["fraction"] = 0.1;
@@ -300,13 +318,13 @@ class OSAddressesController extends Controller
         }
 
 
-        if ($selectedSolarPanels === "true"){
+        if ($selectedSolarPanels === "true") {
             $resultsData["solarPanels"] = $selectedSolarPanelsRating;
         } else {
             $resultsData["solarPanels"] = 0;
         }
 
-        
+
 
         return view('results', compact('osAddress', 'resultsData', 'protoolDefaults', 'request', 'selectedOptionTitles'));
     }
@@ -316,8 +334,7 @@ class OSAddressesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -327,8 +344,7 @@ class OSAddressesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -338,8 +354,7 @@ class OSAddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -349,8 +364,7 @@ class OSAddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -361,8 +375,7 @@ class OSAddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -372,8 +385,8 @@ class OSAddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }
