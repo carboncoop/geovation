@@ -236,7 +236,7 @@ return [
             'temperature_adjustment' => 0
         ],
         "electricPanelHeaters" => [
-            "title" => "Electric Panel, Convector or Radiant Heaters",
+            "title" => "Electric Panel, Convector, Storage or Radiant Heaters",
             "summer" => "100",
             "winter" => "100",
             "fuel" => "Standard Tariff",
@@ -272,6 +272,19 @@ return [
             'combi_loss' => 0,
             'fans_and_supply_pumps' => 0,
             'primary_circuit_loss' => 'Yes',
+            'temperature_adjustment' => 0
+        ],
+        "gasHeaters" => [
+            "title" => "Gas Heaters",
+            "summer" => "63",
+            "winter" => "63",
+            "fuel" => "Mains Gas",
+            "responsiveness" => 0.5,
+            "controlType" => 1,
+            'central_heating_pump' => 0,
+            'combi_loss' => 0,
+            'fans_and_supply_pumps' => 0,
+            'primary_circuit_loss' => 'No',
             'temperature_adjustment' => 0
         ],
         "electricUnderfloorHeating" => [
