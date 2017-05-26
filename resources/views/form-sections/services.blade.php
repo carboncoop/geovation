@@ -108,7 +108,7 @@
 		<div class="input-field__field-title"><span class="input-order-num">16</span>Does your home have solar panels?</div>
 		<div class="btn--toggle-wrapper">
 			<input name="home-solar" type="hidden" value="false" class='js-hidden-for-checkbox'>
-			<input id="home-solar" class="btn--toggle" name="home-solar" type="checkbox" value='false' {{ Input::old('home-solar') == "true" ? 'checked' : '' }}>
+			<input id="home-solar" class="btn--toggle" name="home-solar" type="checkbox" value='true' {{ Input::old('home-solar') == "true" ? 'checked' : '' }}>
 			<label for="home-solar" class="btn btn--round" data-toggle-hidden="data-16a">
 				<span class="toggle-option">Yes</span>
 				<span class="toggle-option">No</span>

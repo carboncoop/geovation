@@ -356,7 +356,7 @@ switch (results.airPermeabilityValue.title) {
         break;
 }
 
-if (results.solarPanels) {
+if (results.solarPanels != 0) {
     dataIn.use_generation = true;
 }
 dataIn.use_PV_calculator = true;

@@ -72,14 +72,6 @@ class OSAddressesController extends Controller {
             'window-type' => 'required',
                 // 'door-type' => 'required'
         ];
-
-        echo('flat: ');
-        var_dump($request["flat-or-apartment"]);
-        echo('<br />below: ');
-        var_dump($request["flat-or-apartment-below"]);
-        echo('<br />above: ');
-        var_dump($request["flat-or-apartment-above"]);
-
         if (is_null($request["flat-or-apartment"])) {
             $validation_array['floor-insulation'] = 'required';
             $validation_array['loft-insulation'] = 'required';
@@ -93,12 +85,13 @@ class OSAddressesController extends Controller {
             }
         }
         $this->validate($request, $validation_array);
+        
+        //var_dump($request["preference-cost"]);
 
         // if user has modified the floor area, use that, else use the OS data.
         $selectedFloorArea = ($request["floor-area-user-modified"] != null ) ? str_replace(',', '', $request["floor-area-user-modified"]) : $request["floor-area"];
 
         $selectedBuildDate = $request["build-date"];
-
 
         // insert age-based assumptions if necessary
         $selectedWindowType = $request["window-type"] == "unknown" ? $ageBasedAssumptions["windowTypes"][$selectedBuildDate] : $request["window-type"];

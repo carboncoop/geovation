@@ -55,7 +55,7 @@
                 <div class="input-field">
                     <label for="floor-area-user-modified" class="input-field__field-title"><span class="input-order-num"></span>We have calculated your home's ground floor area to be {{ round($osAddress->singleFloorArea()) }} m<sup>2</sup> using Ordnance Survey data. If you think this looks wrong, please enter an estimate here, otherwise please leave this blank.</label>
                     <div class="input-number-wrapper cf">
-                        <input type="text" id="floor-area-user-modified" class="input-number input--border-bot" name="floor-area-user-modified">
+                        <input type="text" id="floor-area-user-modified" class="input-number input--border-bot" name="floor-area-user-modified" value="{{ is_null(old('floor-area-user-modified')) != true && old('floor-area-user-modified') !=0 ? round(old('floor-area-user-modified')) : '' }}">
                         <label>m<sup>2</sup></label>
                     </div>
                 </div>
@@ -67,18 +67,18 @@
                     <label for="build-date" class="input-field__field-title"><span class="input-order-num">1</span>When was your home built?</label>
                     <select class="input-chosen-select input--rounded-top input--border-bot" id="build-date" name="build-date" placeholder="Select from the following..">
                         <option> </option>
-                        <option value="pre1900">before 1900</option>
-                        <option value="1900-1929">1900-1929</option>
-                        <option value="1930-1949">1930-1949</option>
-                        <option value="1950-1966">1950-1966</option>
-                        <option value="1967-1975">1967-1975</option>
-                        <option value="1976-1982">1976-1982</option>
-                        <option value="1983-1990">1983-1990</option>
-                        <option value="1991-1995">1991-1995</option>
-                        <option value="1996-2002">1996-2002</option>
-                        <option value="2003-2006">2003-2006</option>
-                        <option value="2007-2011">2007-2011</option>
-                        <option value="post2012">2012 onwards</option>
+                        <option value="pre1900" {{ (Input::old('build-date') == "pre1900" ? "selected":"") }}>before 1900</option>
+                        <option value="1900-1929" {{ (Input::old('build-date') == "1900-1929" ? "selected":"") }}>1900-1929</option>
+                        <option value="1930-1949" {{ (Input::old('build-date') == "1930-1949" ? "selected":"") }}>1930-1949</option>
+                        <option value="1950-1966" {{ (Input::old('build-date') == "1950-1966" ? "selected":"") }}>1950-1966</option>
+                        <option value="1967-1975" {{ (Input::old('build-date') == "1967-1975" ? "selected":"") }}>1967-1975</option>
+                        <option value="1976-1982" {{ (Input::old('build-date') == "1976-1982" ? "selected":"") }}>1976-1982</option>
+                        <option value="1983-1990" {{ (Input::old('build-date') == "1983-1990" ? "selected":"") }}>1983-1990</option>
+                        <option value="1991-1995" {{ (Input::old('build-date') == "1991-1995" ? "selected":"") }}>1991-1995</option>
+                        <option value="1996-2002" {{ (Input::old('build-date') == "1996-2002" ? "selected":"") }}>1996-2002</option>
+                        <option value="2003-2006" {{ (Input::old('build-date') == "2003-2006" ? "selected":"") }}>2003-2006</option>
+                        <option value="2007-2011" {{ (Input::old('build-date') == "2007-2011" ? "selected":"") }}>2007-2011</option>
+                        <option value="post2012" {{ (Input::old('build-date') == "post2012" ? "selected":"") }}>2012 onwards</option>
                     </select>
                     <p class="input-field__info">This will help us to understand the construction of your home where you're not sure of it.</p>
                 </div>
@@ -124,18 +124,18 @@
             </div>
 
 
-            <div class="col-1 hidden cf" data-toggle-hidden-target="data-3a">
+            <div class="col-1 {{ old('loft-conversion') != 'true' ? 'hidden' : ''}} cf" data-toggle-hidden-target="data-3a">
                 <div class="input-field input-field--hidden cf">
                     <div class="col-2">
                         <label for="loft-conversion-date" class="input-field__field-title">When was this attic space or loft conversion built or last refurbished?</label>
                         <select class="input-chosen-select input--rounded-top input--border-bot" id="loft-conversion-date" name="loft-conversion-date" placeholder="Select from the following..">
                             <option> </option>
-                            <option value="before 1966 (no insulation)">before 1966 (no insulation)</option>
-                            <option value="1967-1982 (50mm insulation)">1967-1982 (50mm insulation)</option>
-                            <option value="1983-1990 (100mm insulation)">1983-1990 (100mm insulation)</option>
-                            <option value="1991-2002 (150mm insulation)">1991-2002 (150mm insulation)</option>
-                            <option value="2003 onwards (270mm insulation)">2003 onwards (270mm insulation)</option>
-                            <option value="dont know">dont know</option>
+                            <option value="before 1966 (no insulation)" {{ (Input::old('loft-conversion-date') == "before 1966 (no insulation)" ? "selected":"") }}>before 1966 (no insulation)</option>
+                            <option value="1967-1982 (50mm insulation)" {{ (Input::old('loft-conversion-date') == "1967-1982 (50mm insulation)" ? "selected":"") }}>1967-1982 (50mm insulation)</option>
+                            <option value="1983-1990 (100mm insulation)" {{ (Input::old('loft-conversion-date') == "1983-1990 (100mm insulation)" ? "selected":"") }}>1983-1990 (100mm insulation)</option>
+                            <option value="1991-2002 (150mm insulation)" {{ (Input::old('loft-conversion-date') == "1991-2002 (150mm insulation)" ? "selected":"") }}>1991-2002 (150mm insulation)</option>
+                            <option value="2003 onwards (270mm insulation)" {{ (Input::old('loft-conversion-date') == "2003 onwards (270mm insulation)" ? "selected":"") }}>2003 onwards (270mm insulation)</option>
+                            <option value="dont know" {{ (Input::old('loft-conversion-date') == "dont know" ? "selected":"") }}>don't know</option>
                         </select>
                         <p class="input-field__info">We're interested in this because it will help tell us the likely level of insulation here. You can also choose based on your knowlege of the insulation here. </p>
                     </div>
@@ -227,15 +227,15 @@
                             <p>Save Carbon</p>
                             <div class="right-align radio-group">
                                 <div class="number-label">
-                                    <input type="radio" name="preference-carbon" id="carbon-1" value="1" checked>
+                                    <input type="radio" name="preference-carbon" id="carbon-1" value="1" {{old('preference-carbon') == 1 || is_null(old('preference-carbon'))== true ? 'checked' : ''}}>
                                     <label for="carbon-1">1</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-carbon" id="carbon-2" value="2">
+                                    <input type="radio" name="preference-carbon" id="carbon-2" value="2" {{old('preference-carbon') == 2 ? 'checked' : ''}}>
                                     <label for="carbon-2">2</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-carbon" id="carbon-3" value="3">
+                                    <input type="radio" name="preference-carbon" id="carbon-3" value="3" {{old('preference-carbon') == 3 ? 'checked' : ''}}>
                                     <label for="carbon-3">3</label>
                                 </div>
                             </div>
@@ -244,15 +244,15 @@
                             <p>Reduce Bills</p>
                             <div class="right-align radio-group">
                                 <div class="number-label">
-                                    <input type="radio" name="preference-cost" id="cost-1" value="1">
+                                    <input type="radio" name="preference-cost" id="cost-1" value="1" {{old('preference-cost') == 1 ? 'checked' : ''}}>
                                     <label for="cost-1">1</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-cost" id="cost-2" value="2" checked>
+                                    <input type="radio" name="preference-cost" id="cost-2" value="2" {{old('preference-cost') == 2 || is_null(old('preference-cost'))== true ? 'checked' : ''}}>
                                     <label for="cost-2">2</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-cost" id="cost-3" value="3">
+                                    <input type="radio" name="preference-cost" id="cost-3" value="3" {{old('preference-cost') == 3 ? 'checked' : ''}}>
                                     <label for="cost-3">3</label>
                                 </div>
                             </div>
@@ -261,15 +261,15 @@
                             <p>Improve Comfort</p>
                             <div class="right-align radio-group">
                                 <div class="number-label">
-                                    <input type="radio" name="preference-comfort" id="comfort-1" value="1">
+                                    <input type="radio" name="preference-comfort" id="comfort-1" value="1"{{old('preference-comfort') == 1 ? 'checked' : ''}}>
                                     <label for="comfort-1">1</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-comfort" id="comfort-2" value="2">
+                                    <input type="radio" name="preference-comfort" id="comfort-2" value="2" {{old('preference-comfort') == 2 ? 'checked' : ''}}>
                                     <label for="comfort-2">2</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-comfort" id="comfort-3" value="3" checked>
+                                    <input type="radio" name="preference-comfort" id="comfort-3" value="3" {{old('preference-comfort') == 3 || is_null(old('preference-comfort')) == true ? 'checked' : ''}}>
                                     <label for="environment-3">3</label>
                                 </div>
                             </div>
