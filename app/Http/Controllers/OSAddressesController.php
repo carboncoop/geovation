@@ -317,9 +317,10 @@ class OSAddressesController extends Controller {
             $resultsData["solarPanels"] = 0;
         }
 
+        $results_summary_for_email='<p>Thank you for using MyHomeEnergy Salford</p><p>Hola</p>';
 
 
-        return view('results', compact('osAddress', 'resultsData', 'protoolDefaults', 'request', 'selectedOptionTitles'));
+        return view('results', compact('osAddress', 'resultsData', 'protoolDefaults', 'request', 'selectedOptionTitles','results_summary_for_email'));
     }
 
     /**

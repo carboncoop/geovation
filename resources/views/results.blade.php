@@ -67,10 +67,19 @@
 
         </div>
     </div>
-    <a href="/overview" class="btn btn--basic btn--highlighted">Find out more</a>
+    <div class="ctext overview-sharing body-copy body-copy--dbl-margin">
+        <a href="#" class="btn btn--basic btn--highlighted">Email my results</a>
+        <p>You can share or print your My Home Energy results</p>
+        <a href="#" class="btn btn--round btn--icon btn--icon-print">Share</a>
+        <a href="#" class="btn btn--round btn--icon btn--icon-print">Print</a>
+    </div>
+    <a href="/overview" class="btn btn--basic btn--highlighted  find-out-more">Find out more</a>
     <div class="reset-nav">
         <a href="#" class="js-return reset-nav__back">Back</a>
         <a href="/" class="reset-nav__reset">Start Again</a>
+        <a href="mailto:email-me@my-email.org?Subject=MyHomeEnergySalford results&body={{  $results_summary_for_email }}" class="reset-nav__reset">Email my results</a>
+        <a href="#" class="reset-nav__reset">Share</a>
+        <a href="#" class="reset-nav__reset js-return" onclick="window.print()">Print</a>
     </div>
 </div>
 

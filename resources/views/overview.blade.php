@@ -26,12 +26,12 @@
             <img class="overview-results__graph" src="{{ URL::asset('img/temp-graph.png') }}" alt="">
         </div>
     </div>
-    <div class="ctext overview-sharing body-copy body-copy--dbl-margin">
+    <!--<div class="ctext overview-sharing body-copy body-copy--dbl-margin">
         <a href="#" class="btn btn--basic btn--highlighted">Email my results</a>
         <p>You can share or print your My Home Energy results</p>
         <a href="#" class="btn btn--round btn--icon btn--icon-print">Share</a>
         <a href="#" class="btn btn--round btn--icon btn--icon-print">Print</a>
-    </div>
+    </div>-->
 </div>
 <div class="grey-bg overview-more-info">
     <div class="page-wrapper">

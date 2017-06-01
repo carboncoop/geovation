@@ -1,34 +1,34 @@
 .results-graphs h3 {
-	color: $purple;
-	margin-bottom: 0.45em;
+    color: $purple;
+    margin-bottom: 0.45em;
 }
 
 .results-graphs__graph {
-	max-width: 100%;
-	margin-bottom: 4em;
-	margin-left:-10px;
+    max-width: 100%;
+    margin-bottom: 4em;
+    margin-left:-10px;
 }
 
 .results-graphs__graph svg {
-	width:100%;
-	height:auto;
-	margin:0 0 20px;
+    width:100%;
+    height:auto;
+    margin:0 0 20px;
 }
 
 .value-bar {
-	// fill:#f1654f;
-	stroke-width:0;
+    // fill:#f1654f;
+    stroke-width:0;
 }
 
 .background-bar {
-	fill:#fcf2f0;
-	stroke-width:0;
+    fill:#fcf2f0;
+    stroke-width:0;
 }
 
 .target-range {
-	// fill:rgba(106, 41, 74, 0.4);
-	// fill:url("/#stripes");
-	stroke-width:0;
+    // fill:rgba(106, 41, 74, 0.4);
+    // fill:url("/#stripes");
+    stroke-width:0;
 }
 
 .axis path,
@@ -39,7 +39,7 @@
 }
 
 .axis path {
-	stroke:none;
+    stroke:none;
 }
 
 .axis text,
@@ -50,54 +50,54 @@
 }
 
 .graph-average-text-box {
-	font-size: 10px;
+    font-size: 10px;
 }
 
 .tick line {
-	stroke:$grey--light;
+    stroke:$grey--light;
 }
 
 .chart-legend {
-	margin:10px;
-	padding:10px;
-	background:$grey--x-light;
-	overflow:hidden;
+    margin:10px;
+    padding:10px;
+    background:$grey--x-light;
+    overflow:hidden;
 }
 
 .chart-legend-item {
-	width:180px;
-	margin-right:40px;
-	display: inline-block;
-	vertical-align: top;
-	font-size:0.9em;
+    width:180px;
+    margin-right:40px;
+    display: inline-block;
+    vertical-align: top;
+    font-size:0.9em;
 }
 
 .chart-legend-item p {
-	// float:left;
+    // float:left;
 }
 
 .chart-legend-item-color {
-	float:left;
-	width:10px;
-	height:10px;
-	margin-right: 10px;
+    float:left;
+    width:10px;
+    height:10px;
+    margin-right: 10px;
     margin-top: 8px;
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .house-illustration-info {
-	display: none;
-	opacity: 0;
-	background: $salmon;
-	border-radius: 4px;
-	padding: 20px;
-	margin: 1em 0;
-	transition: opacity 0.15s ease-out;
+    display: none;
+    opacity: 0;
+    background: $salmon;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 1em 0;
+    transition: opacity 0.15s ease-out;
 }
 
 .house-illustration-info.animating {
-	opacity: 0;
-	display: block;
+    opacity: 0;
+    display: block;
 }
 
 .hosue-illustration-info.visible.animating {
@@ -105,38 +105,38 @@
 }
 
 .house-illustration-info.visible {
-	display: block;
-	opacity: 1;
+    display: block;
+    opacity: 1;
 }
 
 .home-instructions {
-	margin-bottom: 2em;
+    margin-bottom: 2em;
 
-	b, .highlight {
-		color: $purple--light;
-	}
+    b, .highlight {
+        color: $purple--light;
+    }
 }
 
 .graph-info {
-	overflow:hidden;
-	opacity:0;
-	height:0;
-	transform: translateY(-10px);
-	transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    overflow:hidden;
+    opacity:0;
+    height:0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .graph-info--revealed {
-	opacity:1;
-	transform: translateY(0px);
-	height:auto;
+    opacity:1;
+    transform: translateY(0px);
+    height:auto;
 }
 
 .graph-info-toggle {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .graph-info-toggle span { 
-	display: block;
+    display: block;
     height: 16px;
     width: 16px;
     line-height: 16px;
@@ -151,7 +151,20 @@
 }
 
 .graph-info-toggle--active span {
-	background:$purple;
-	border-color:$purple;
-	color:$white;
+    background:$purple;
+    border-color:$purple;
+    color:$white;
+}
+
+@media print { 
+    header{position: relative !important}
+    header nav, .overview-sharing, .reset-nav, .find-out-more {display:none !important}
+    .graph-info-toggle {display:none}
+    .graph-info{height:107px !important; opacity:1; margin-top: 25px;}
+    .home-instructions{display:none !important}
+    .house-illustration{margin:0 50px 50px;width:500px;}
+    .js-primary-energy-use-chart{margin-top:-50px}
+    .js-carbon-emissions-chart{margin-top:-35px;}
+    .js-annual-cost-chart{margin-top:-100px}
+    .js-space-heating-chart{margin-top:-50px}
 }
