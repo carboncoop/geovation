@@ -135,6 +135,31 @@ return [
             "title" => "Don't know",
         ]
     ],
+    "loftConversionInsulation"=>[
+        "noInsulation" => [
+            "title" => "before 1966 (no insulation)",
+            "uvalue" => 2.3,
+        ],
+         "50mm"=> [
+            "title" => "1967-1982 (50mm insulation)",
+            "uvalue" => 0.8
+        ],
+         "100mm"=> [
+            "title" => "1983-1990 (100mm insulation)",
+            "uvalue" => 0.5
+        ],
+         "150mm"=> [
+            "title" => "1991-2002 (150mm insulation)",
+            "uvalue" => 0.35
+        ],
+         "270mm"=> [
+            "title" => "2003 onwards (270mm insulation)",
+            "uvalue" => 0.16
+        ],
+         "unknown"=> [
+            "title" => "don't know"
+        ],
+    ],
     "wallTypes" => [
         "solidBrick" => [
             "title" => "Solid brick or masonry, uninsulated",

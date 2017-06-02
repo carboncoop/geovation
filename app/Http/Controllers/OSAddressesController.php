@@ -63,6 +63,7 @@ class OSAddressesController extends Controller {
         // Validation
         $validation_array = [
             // 'title' => 'required|unique:posts|max:255',
+            'build-date' => 'required',
             'build-storeys' => 'required',
             'wall-material' => 'required',
             //'floor-insulation' => 'required',
@@ -72,22 +73,24 @@ class OSAddressesController extends Controller {
             'window-type' => 'required',
                 // 'door-type' => 'required'
         ];
-        if (is_null($request["flat-or-apartment"])) {
+
+        if ($request['loft-conversion'] == "true") {
+            $validation_array['loft-conversion-date'] = 'required';
+            $validation_array['floor-insulation'] = 'required';
+        } else if (is_null($request["flat-or-apartment"])) {
             $validation_array['floor-insulation'] = 'required';
             $validation_array['loft-insulation'] = 'required';
         } else {
             if ($request['flat-or-apartment-below'] != "true") {
                 $validation_array['floor-insulation'] = 'required';
-                echo('<br /> I am in');
             }
             if ($request['flat-or-apartment-above'] != 'true') {
                 $validation_array['loft-insulation'] = 'required';
             }
         }
         $this->validate($request, $validation_array);
-        
-        //var_dump($request["preference-cost"]);
 
+        //var_dump($request["preference-cost"]);
         // if user has modified the floor area, use that, else use the OS data.
         $selectedFloorArea = ($request["floor-area-user-modified"] != null ) ? str_replace(',', '', $request["floor-area-user-modified"]) : $request["floor-area"];
 
@@ -100,6 +103,8 @@ class OSAddressesController extends Controller {
         $selectedLoftInsulation = $request["loft-insulation"] == "unknown" ? $ageBasedAssumptions["loftInsulation"][$selectedBuildDate] : $request["loft-insulation"];
         $selectedFloorInsulationType = $request["floor-insulation"] == "unknown" ? $ageBasedAssumptions["floorInsulationTypes"][$selectedBuildDate] : $request["floor-insulation"];
         $selectedHeating = $request["home-heating"] == "unknown" ? $ageBasedAssumptions["spaceHeatingSystemsPrimary"][$selectedBuildDate] : $request["home-heating"];
+        $selectedLoftConversionInsulation = $request["loft-conversion-date"] == "unknown" ? $ageBasedAssumptions["loftConversionInsulation"][$selectedBuildDate] : $request["loft-conversion-date"];
+
 
         $selectedOptionTitles = [
             "window-type" => config('protoolDefaults.windowTypes')[$selectedWindowType]["title"],
@@ -107,7 +112,8 @@ class OSAddressesController extends Controller {
             "home-draughts" => config('protoolDefaults.ventilation')["airPermeabilityValues"][$selectedDraughtyness]["title"],
             "loft-insulation" => config('protoolDefaults.loftInsulation')[$selectedLoftInsulation]["title"],
             "floor-insulation" => config('protoolDefaults.floorInsulationTypes')[$selectedFloorInsulationType]["title"],
-            "home-heating" => config('protoolDefaults.spaceHeatingSystemsPrimary')[$selectedHeating]["title"]
+            "home-heating" => config('protoolDefaults.spaceHeatingSystemsPrimary')[$selectedHeating]["title"],
+            "loft-conversion-date" => config('protoolDefaults.loftConversionInsulation')[$selectedLoftConversionInsulation]["title"],
         ];
 
 
@@ -169,8 +175,16 @@ class OSAddressesController extends Controller {
 
 
         // Roofs
-        // If the building is an apartment with a property above, don't add a roof
+        // First we check if there is an attic conversion (room in roof), if so we add a roof with the u-value from the input loft-conversion-date (form.blade) which is $selectedRoomInRoof in this controller
+        // If it isn't an attic conversion and the house is not a flat or hasn't got another flat on top then we add a roof with the $selectedLoftInsulation
         $roofs = [];
+        if ($request['loft-conversion'] == 'true') {
+            array_push($roofs, [
+                "type" => 'roof',
+                "area" => (float) $selectedFloorArea,
+                "uvalue" => config('protoolDefaults.loftConversionInsulation')[$selectedRoomInRoof]["uvalue"]
+            ]);
+        }
         if ($request['flat-or-apartment'] != 'true' || $request['flat-or-apartment-above'] != "true") {
             array_push($roofs, [
                 "type" => 'roof',
@@ -317,10 +331,10 @@ class OSAddressesController extends Controller {
             $resultsData["solarPanels"] = 0;
         }
 
-        $results_summary_for_email='<p>Thank you for using MyHomeEnergy Salford</p><p>Hola</p>';
+        $results_summary_for_email = '<p>Thank you for using MyHomeEnergy Salford</p><p>Hola</p>';
 
 
-        return view('results', compact('osAddress', 'resultsData', 'protoolDefaults', 'request', 'selectedOptionTitles','results_summary_for_email'));
+        return view('results', compact('osAddress', 'resultsData', 'protoolDefaults', 'request', 'selectedOptionTitles', 'results_summary_for_email'));
     }
 
     /**
