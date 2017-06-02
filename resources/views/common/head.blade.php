@@ -9,7 +9,7 @@
     <meta property="og:url"           content="http://myhomeenergysalford.carbon.coop/" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="My Home Energy Saldford" />
-    <meta property="og:description"   content="I am using My Home Energy Salford to get a good idea of my home energy performance quickly and simply." />
+    <meta property="og:description"   content="I am using My Home Energy Salford to get a good idea of my home energy performance quickly and simply. These are my results" />
     <meta property="og:image"         content="http://myhomeenergysalford.carbon.coop/img/myhome-fb.jpg" />
     <meta property="og:image:width"         content="1201" />
     <meta property="og:image:height"         content="631" />
