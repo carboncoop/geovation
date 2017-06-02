@@ -40,20 +40,20 @@
             </div>
 
             <div class="house-illustration-info body-copy insulation-info">
-                <b>Fabric/Insulation:</b>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio aperiam sapiente laboriosam quaerat dolor cumque. Blanditiis veniam rerum odio!</p>
+                <b>Fabric/Insulation</b>
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum optio aperiam sapiente laboriosam quaerat dolor cumque. Blanditiis veniam rerum odio!</p>-->
             </div>
             <div class="house-illustration-info body-copy services-info">
-                <b>Services:</b>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi possimus, blanditiis laboriosam temporibus quo nulla vitae debitis soluta impedit. Aliquam.</p>
+                <b>Services</b>
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi possimus, blanditiis laboriosam temporibus quo nulla vitae debitis soluta impedit. Aliquam.</p>-->
             </div>
             <div class="house-illustration-info body-copy data-info">
-                <b>Home Data:</b>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, doloremque facere sequi labore officia delectus in qui assumenda voluptas, eius.</p>
+                <b>Home Data</b>
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, doloremque facere sequi labore officia delectus in qui assumenda voluptas, eius.</p>-->
             </div>
             <div class="house-illustration-info body-copy energy-info">
-                <b>Current Energy Use:</b>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas id, iste repellendus cumque voluptates dolores sequi. Rerum cupiditate quo, optio?</p>
+                <b>Current Energy Use</b>
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas id, iste repellendus cumque voluptates dolores sequi. Rerum cupiditate quo, optio?</p>-->
             </div>
         </div>
         <div class="col-2 results-graphs">
