@@ -78,9 +78,20 @@
         <a href="#" class="js-return reset-nav__back">Back</a>
         <a href="/" class="reset-nav__reset">Start Again</a>
         <a href="mailto:email-me@my-email.org?Subject=MyHomeEnergySalford results&body={{  $results_summary_for_email }}" class="reset-nav__reset">Email my results</a>
-        <a href="#" class="reset-nav__reset">Share</a>
-        <a href="#" class="reset-nav__reset js-return" onclick="window.print()">Print</a>
+        <span style="color:rgb(149, 149, 149);padding-left:25px;">Share on</span>
+        <a target='blank' href="https://www.facebook.com/dialog/share?app_id=616700828538791&href={{Request::url()}}"><img src='{{ URL::asset('img/fb-icon.png') }}' style="width:15px"></a>
+        <img src='{{ URL::asset('img/twitter-icon.png') }}' style="width:15px;margin-left:15x">
+        <a href="#" class="" onclick="window.print()" style="color:rgb(149, 149, 149);padding-left:25px; text-decoration: none"><img src='{{ URL::asset('img/print-icon.svg') }}' style="width:15px"> Print</a>
+        <a href="#" onclick="fb_share(); return(false)">Share FB</a>
     </div>
+
+<script>
+    function fb_share(){
+        window.open("https://www.facebook.com/dialog/feed?app_id=616700828538791&caption=hola&link=http%3A%2F%2Fmyhomeenergysalford.carbon.coop%2F&redirect_uri=http%3A%2F%2Fmyhomeenergysalford.carbon.coop%2F","Share My Home Energy Saldford", "height=236, width=516");
+    }
+</script>    
+
+
 </div>
 
 <div class="modal" data-modal-id="fabric-modal">
@@ -167,4 +178,7 @@
 <script>
     var results = <?php echo json_encode($resultsData); ?>;
 </script>
+
+<iframe name="fb-iframe" style="width:800px; height:800px;" src="https://www.facebook.com/dialog/feed?app_id=616700828538791&caption=hola&link=http%3A%2F%2Fmyhomeenergysalford.carbon.coop%2F&redirect_uri=http%3A%2F%2Fmyhomeenergysalford.carbon.coop%2F"></iframe>
 @stop
+
