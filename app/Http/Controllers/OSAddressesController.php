@@ -311,7 +311,7 @@ class OSAddressesController extends Controller {
         }
 
 
-        if ($selectedSolarPanels === "true") {
+        if ($selectedSolarPanels == "true") {
             $resultsData["solarPanels"] = $selectedSolarPanelsRating;
         } else {
             $resultsData["solarPanels"] = 0;

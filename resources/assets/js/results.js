@@ -356,10 +356,11 @@ switch (results.airPermeabilityValue.title) {
         break;
 }
 
-if (results.solarPanels != 0) {
+if (results.solarPanels != 0)
     dataIn.use_generation = true;
-}
-dataIn.use_PV_calculator = true;
+else
+    dataIn.use_generation = false;
+dataIn.generation.use_PV_calculator = true;
 dataIn.generation.solarpv_kwp_installed = results.solarPanels;
 dataIn.generation.solarpv_inclination = 35;
 dataIn.generation.solarpv_orientation = 4; //South
