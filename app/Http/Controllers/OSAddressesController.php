@@ -100,21 +100,25 @@ class OSAddressesController extends Controller {
         $selectedWindowType = $request["window-type"] == "unknown" ? $ageBasedAssumptions["windowTypes"][$selectedBuildDate] : $request["window-type"];
         $selectedWallMaterial = $request["wall-material"] == "unknown" ? $ageBasedAssumptions["wallTypes"][$selectedBuildDate] : $request["wall-material"];
         $selectedDraughtyness = $request["home-draughts"] == "unknown" ? $ageBasedAssumptions["ventilation"][$selectedBuildDate] : $request["home-draughts"];
-        $selectedLoftInsulation = $request["loft-insulation"] == "unknown" ? $ageBasedAssumptions["loftInsulation"][$selectedBuildDate] : $request["loft-insulation"];
+        $selectedLoftInsulation = $request["loft-insulation"] == "unknown" || $request["loft-insulation"] == "" ? $ageBasedAssumptions["loftInsulation"][$selectedBuildDate] : $request["loft-insulation"];
         $selectedFloorInsulationType = $request["floor-insulation"] == "unknown" ? $ageBasedAssumptions["floorInsulationTypes"][$selectedBuildDate] : $request["floor-insulation"];
         $selectedHeating = $request["home-heating"] == "unknown" ? $ageBasedAssumptions["spaceHeatingSystemsPrimary"][$selectedBuildDate] : $request["home-heating"];
-        $selectedLoftConversionInsulation = $request["loft-conversion-date"] == "unknown" ? $ageBasedAssumptions["loftConversionInsulation"][$selectedBuildDate] : $request["loft-conversion-date"];
+        $selectedLoftConversionInsulation = $request["loft-conversion-date"] == "unknown" || $request["loft-conversion-date"] == "" ? $ageBasedAssumptions["loftConversionInsulation"][$selectedBuildDate] : $request["loft-conversion-date"];
 
 
         $selectedOptionTitles = [
             "window-type" => config('protoolDefaults.windowTypes')[$selectedWindowType]["title"],
             "wall-material" => config('protoolDefaults.wallTypes')[$selectedWallMaterial]["title"],
             "home-draughts" => config('protoolDefaults.ventilation')["airPermeabilityValues"][$selectedDraughtyness]["title"],
-            "loft-insulation" => config('protoolDefaults.loftInsulation')[$selectedLoftInsulation]["title"],
             "floor-insulation" => config('protoolDefaults.floorInsulationTypes')[$selectedFloorInsulationType]["title"],
             "home-heating" => config('protoolDefaults.spaceHeatingSystemsPrimary')[$selectedHeating]["title"],
             "loft-conversion-date" => config('protoolDefaults.loftConversionInsulation')[$selectedLoftConversionInsulation]["title"],
         ];
+        /* if (is_null([$selectedLoftInsulation]) == '') {
+          $selectedOptionTitles["floor-insulation"] = config('protoolDefaults.loftInsulation')['unknown']["title"];
+          } else {
+          $selectedOptionTitles["floor-insulation"] = config('protoolDefaults.loftInsulation')[$selectedLoftInsulation]["title"];
+          } */
 
 
         // $selectedDoorType = $request["door-type"];
@@ -182,10 +186,10 @@ class OSAddressesController extends Controller {
             array_push($roofs, [
                 "type" => 'roof',
                 "area" => (float) $selectedFloorArea,
-                "uvalue" => config('protoolDefaults.loftConversionInsulation')[$selectedRoomInRoof]["uvalue"]
+                "uvalue" => config('protoolDefaults.loftConversionInsulation')[$selectedLoftConversionInsulation]["uvalue"]
             ]);
         }
-        if ($request['flat-or-apartment'] != 'true' || $request['flat-or-apartment-above'] != "true") {
+        if (is_null($request['flat-or-apartment']) != true && ($request['flat-or-apartment'] != 'true') || (is_null($request['flat-or-apartment-above']) != true && $request['flat-or-apartment-above'] != "true")) {
             array_push($roofs, [
                 "type" => 'roof',
                 "area" => (float) $selectedFloorArea,
