@@ -6,7 +6,7 @@
 	<div>
 		<p class='js-show-graph-info-toggle graph-info-toggle'><span>i</span> Info</p>
 
-		<p class='graph-info js-graph-info'>This graph shows the approximate annual cost of energy in your home. The top bar shows the information from the model. The bottom bar shows information from your current bills. </p>
+		<p class='graph-info js-graph-info'>This graph shows the approximate annual cost of energy in your home. The top bar shows the information from the model (theoretical calculation according to how you have described your house). The bottom bar shows information from your current bills. </p>
 	</div>
 
 	<div class="results-graphs__graph js-annual-cost-chart">
