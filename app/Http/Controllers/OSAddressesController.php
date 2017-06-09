@@ -113,6 +113,7 @@ class OSAddressesController extends Controller {
             "floor-insulation" => config('protoolDefaults.floorInsulationTypes')[$selectedFloorInsulationType]["title"],
             "home-heating" => config('protoolDefaults.spaceHeatingSystemsPrimary')[$selectedHeating]["title"],
             "loft-conversion-date" => config('protoolDefaults.loftConversionInsulation')[$selectedLoftConversionInsulation]["title"],
+            "loft-insulation" => config('protoolDefaults.loftInsulation')[$selectedLoftInsulation]["title"]
         ];
         /* if (is_null([$selectedLoftInsulation]) == '') {
           $selectedOptionTitles["floor-insulation"] = config('protoolDefaults.loftInsulation')['unknown']["title"];
