@@ -204,17 +204,6 @@
                 </div>
             </div>
 
-            <div class="col-2">
-                <div class="input-field">
-                    <label for="wall-material" class="input-field__field-title"><span class="input-order-num">5</span>How are the walls of your home built?*</label>
-                    <select class="input-chosen-select input--rounded-top input--border-bot" id="wall-material" name="wall-material" placeholder="Select from the following..">
-                        @include('common.select-options', array('formField' => 'wall-material', 'options' => $protoolDefaults['wallTypes']))
-                    </select>
-                    <p class="input-field__info">If you're not sure about this we will estimate based on the age of your home</p>
-                    @if ($errors->has('wall-material')) <p class="input-field__error">{{ $errors->first('wall-material') }}</p> @endif
-                </div>
-            </div>
-
             @include('form-sections.fabric',  array('pageLocation' => 'form'))
 
             <div class="form-divider cf">

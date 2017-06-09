@@ -1,3 +1,22 @@
+<div class="col-2">
+    <div class="input-field">
+        <label for="wall-material" class="input-field__field-title"><span class="input-order-num">5</span>How are the walls of your home built?*</label>
+        <select class="input-chosen-select input--rounded-top input--border-bot" id="wall-material" name="wall-material" placeholder="Select from the following..">
+            @include('common.select-options', array('formField' => 'wall-material', 'options' => $protoolDefaults['wallTypes']))
+        </select>        
+        <p class="input-field__info">
+            @if ($pageLocation == "form")
+            If you're not sure about this we will estimate based on the age of your home
+            @else
+            @if ($request["wall-material"] == "unknown")
+            Based on the age of your home, we have estimated this to be "{{ $selectedOptionTitles["wall-material"] }}".
+            @endif
+            Change the insulation in your walls and see what difference it makes to carbon, cost and comfort.
+            @endif
+        </p>        
+        @if ($errors->has('wall-material')) <p class="input-field__error">{{ $errors->first('wall-material') }}</p> @endif
+    </div>
+</div>
 <div class="col-2 {{ ($pageLocation == 'results') ? 'hidden' : '' }}">
     <div class="input-field extra-row-numbers">
         <label class="input-field__field-title"><span class="input-order-num">6</span>Please enter the number of windows you have and the direction they face.</label>
