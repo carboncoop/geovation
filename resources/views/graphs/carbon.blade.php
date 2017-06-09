@@ -1,7 +1,7 @@
 <div class="js-results-graph-container">
 	<h3>Carbon and Energy</h3>
 
-	<h4>Primary Energy Use (kWh/m2.year)</h4>
+        <h4>Primary Energy Use (kWh/m<sup>2</sup>.year)</h4>
 
 	<div>
 		<p class='js-show-graph-info-toggle graph-info-toggle'><span>i</span> Info</p>
@@ -12,7 +12,7 @@
 	<div class="results-graphs__graph js-primary-energy-use-chart">
 	</div>
 
-	<h4>Carbon Emissions Rating (kgCO2/m2.year)</h4>
+	<h4>Carbon Emissions Rating (kgCO<sub>2</sub>/m<sup>2</sup>.year)</h4>
 
 	<div>
 		<p class='js-show-graph-info-toggle graph-info-toggle'><span>i</span> Info</p>

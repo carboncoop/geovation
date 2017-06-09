@@ -1,6 +1,6 @@
 <div class="js-results-graph-container">
 	<h3>Comfort</h3>
-	<h4>Space Heating Demand (kWh/m2.year)</h4>
+        <h4>Space Heating Demand (kWh/m<sup>2</sup>.year)</h4>
 
 	<div>
 		<p class='js-show-graph-info-toggle graph-info-toggle'><span>i</span> Info</p>

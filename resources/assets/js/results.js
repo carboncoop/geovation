@@ -606,7 +606,7 @@ $(document).ready(function () {
             }],
         target: [20, 60],
         average: 140,
-        units: "kWh/m2.year",
+        units: "kWh/m" + String.fromCharCode(178) + ".year",
     }
 
     var primaryEnergyData = {
@@ -620,7 +620,7 @@ $(document).ready(function () {
             }],
         target: [0, 120],
         average: 365,
-        units: "kWh/m2.year"
+        units: "kWh/m" + String.fromCharCode(178) + ".year"
     }
 
     var carbonEmissionsData = {
@@ -634,7 +634,7 @@ $(document).ready(function () {
             }],
         target: [0, 20],
         average: 104,
-        units: "kgCO2/m2.year"
+        units: "kgCO" + String.fromCharCode(8322) + "/m" + String.fromCharCode(178) + ".year"
     }
 
     var costData = {
