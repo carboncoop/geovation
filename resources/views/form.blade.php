@@ -230,21 +230,21 @@
 
             <div class="col-2 cf">
                 <div class="input-field">
-                    <label class="input-field__field-title"><span class="input-order-num">18</span>Place these 3 items in order of priority for you:</label>
+                    <label class="input-field__field-title"><span class="input-order-num">18</span>Drag and drop these 3 items in order of priority for you:</label>
                     <ul id="simpleList" class="list-group">
                         <li class="list-group-item cf">
                             <p>Save Carbon</p>
                             <div class="right-align radio-group">
                                 <div class="number-label">
-                                    <input type="radio" name="preference-carbon" id="carbon-1" value="1" {{old('preference-carbon') == 1 || is_null(old('preference-carbon'))== true ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-carbon" onclick="return(false)" id="carbon-1" value="1" {{old('preference-carbon') == 1 || is_null(old('preference-carbon'))== true ? 'checked' : ''}}>
                                            <label for="carbon-1">1</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-carbon" id="carbon-2" value="2" {{old('preference-carbon') == 2 ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-carbon" onclick="return(false)" id="carbon-2" value="2" {{old('preference-carbon') == 2 ? 'checked' : ''}}>
                                     <label for="carbon-2">2</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-carbon" id="carbon-3" value="3" {{old('preference-carbon') == 3 ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-carbon" onclick="return(false)" id="carbon-3" value="3" {{old('preference-carbon') == 3 ? 'checked' : ''}}>
                                     <label for="carbon-3">3</label>
                                 </div>
                             </div>
@@ -253,15 +253,15 @@
                             <p>Reduce Bills</p>
                             <div class="right-align radio-group">
                                 <div class="number-label">
-                                    <input type="radio" name="preference-cost" id="cost-1" value="1" {{old('preference-cost') == 1 ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-cost" onclick="return(false)" id="cost-1" value="1" {{old('preference-cost') == 1 ? 'checked' : ''}}>
                                     <label for="cost-1">1</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-cost" id="cost-2" value="2" {{old('preference-cost') == 2 || is_null(old('preference-cost'))== true ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-cost" onclick="return(false)" id="cost-2" value="2" {{old('preference-cost') == 2 || is_null(old('preference-cost'))== true ? 'checked' : ''}}>
                                            <label for="cost-2">2</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-cost" id="cost-3" value="3" {{old('preference-cost') == 3 ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-cost" onclick="return(false)" id="cost-3" value="3" {{old('preference-cost') == 3 ? 'checked' : ''}}>
                                     <label for="cost-3">3</label>
                                 </div>
                             </div>
@@ -270,15 +270,15 @@
                             <p>Improve Comfort</p>
                             <div class="right-align radio-group">
                                 <div class="number-label">
-                                    <input type="radio" name="preference-comfort" id="comfort-1" value="1"{{old('preference-comfort') == 1 ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-comfort" onclick="return(false)" id="comfort-1" value="1"{{old('preference-comfort') == 1 ? 'checked' : ''}}>
                                     <label for="comfort-1">1</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-comfort" id="comfort-2" value="2" {{old('preference-comfort') == 2 ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-comfort" onclick="return(false)" id="comfort-2" value="2" {{old('preference-comfort') == 2 ? 'checked' : ''}}>
                                     <label for="comfort-2">2</label>
                                 </div>
                                 <div class="number-label">
-                                    <input type="radio" name="preference-comfort" id="comfort-3" value="3" {{old('preference-comfort') == 3 || is_null(old('preference-comfort')) == true ? 'checked' : ''}}>
+                                    <input type="radio" name="preference-comfort" onclick="return(false)" id="comfort-3" value="3" {{old('preference-comfort') == 3 || is_null(old('preference-comfort')) == true ? 'checked' : ''}}>
                                            <label for="environment-3">3</label>
                                 </div>
                             </div>
