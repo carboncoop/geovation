@@ -1,4 +1,15 @@
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-16500819-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-16500819-3');
+    </script>
     <meta charset="UTF-8">
     <title>@yield('title', 'My Home Energy')</title>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/app.css') }}">
